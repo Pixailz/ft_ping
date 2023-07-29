@@ -1,7 +1,7 @@
 # SRCS
-SRC_C_MANDATORY := main.c
+SRC_C_MANDATORY := mandatory/main.c
 
-SRC_C_BONUS := main.c
+SRC_C_BONUS := bonus/main.c
 
 ifeq ($(BONUS),1)
 TARGET				:= $(TARGET_BONUS)
