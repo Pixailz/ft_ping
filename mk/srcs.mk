@@ -1,20 +1,7 @@
 # SRCS
-SRC_C_MANDATORY := mandatory/main.c \
-				   mandatory/utils/utils.1.c \
-				   mandatory/utils/utils.2.c \
-				   mandatory/utils/utils.3.c \
-				   mandatory/utils/utils.4.c \
-				   mandatory/utils/utils.5.c
+SRC_C_MANDATORY := main.c
 
-SRC_C_BONUS := bonus/main.c \
-			   bonus/utils/utils.1.c \
-			   bonus/utils/utils.1/utils.1.c \
-			   bonus/utils/utils.1/utils.2.c \
-			   bonus/utils/utils.1/utils.3.c \
-			   bonus/utils/utils.1/utils.4.c \
-			   bonus/utils/utils.2.c \
-			   bonus/utils/utils.3.c \
-			   bonus/utils/utils.4.c
+SRC_C_BONUS := main.c
 
 ifeq ($(BONUS),1)
 TARGET				:= $(TARGET_BONUS)
