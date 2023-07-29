@@ -1,6 +1,7 @@
 [submodule "rsc/corrector"]
 	path = rsc/corrector
 	url = git@github.com:Pixailz/corrector
+	branch = ft_ping
 [submodule "lib/ft_libft"]
 	path = lib/ft_libft
 	url = git@github.com:Pixailz/ft_libft
