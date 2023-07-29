@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   long.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/29 21:32:58 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/07/29 21:32:18 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/07/29 21:32:40 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ping.h>
 
-int main(int ac, char **av)
+t_bool	is_arg_long(char *arg)
 {
-	parse_arg(ac, av);
-	return (0);
+	if (arg[0] != '-' && arg[1] != '-')
+		return (FALSE);
+	arg += 2;
+	if (!ft_is_str(arg, ft_isalnum))
+		return (FALSE);
+	return (TRUE);
+}
+
+void	parse_arg_long(char *arg)
+{
+	printf("[%s] is long\n", arg);
 }

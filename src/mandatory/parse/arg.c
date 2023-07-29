@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   arg.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/29 21:32:58 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/07/29 21:33:02 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/07/29 21:33:12 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_ping.h>
 
-int main(int ac, char **av)
+void	parse_arg(int ac, char **av)
 {
-	parse_arg(ac, av);
-	return (0);
+	int	counter;
+
+	counter = 1;
+	while (av[counter])
+	{
+		if (is_arg_short(av[counter]))
+			parse_arg_short(av[counter]);
+		else if (is_arg_long(av[counter]))
+			parse_arg_long(av[counter]);
+		counter++;
+	}
 }

@@ -1,13 +1,16 @@
 # SRCS
-SRC_C_MANDATORY := mandatory/main.c
+SRC_C_MANDATORY := main.c \
+				   parse/arg.c \
+				   parse/long.c \
+				   parse/short.c
 
-SRC_C_BONUS := bonus/main.c
+SRC_C_BONUS := main.c
 
 ifeq ($(BONUS),1)
 TARGET				:= $(TARGET_BONUS)
-SRC_C				:= $(addprefix $(SRC_DIR)/,$(SRC_C_BONUS))
+SRC_C				:= $(addprefix $(SRC_DIR)/bonus/,$(SRC_C_BONUS))
 else
-SRC_C				:= $(addprefix $(SRC_DIR)/,$(SRC_C_MANDATORY))
+SRC_C				:= $(addprefix $(SRC_DIR)/mandatory/,$(SRC_C_MANDATORY))
 endif
 
 # OBJ
