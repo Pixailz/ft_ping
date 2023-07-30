@@ -6,11 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:33:02 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/29 21:33:12 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/07/30 05:51:41 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_ping.h>
+#include "ft_ping.h"
 
 void	parse_arg(int ac, char **av)
 {
@@ -20,9 +20,9 @@ void	parse_arg(int ac, char **av)
 	while (av[counter])
 	{
 		if (is_arg_short(av[counter]))
-			parse_arg_short(av[counter]);
-		else if (is_arg_long(av[counter]))
-			parse_arg_long(av[counter]);
+			parse_arg_short(av[counter] + 1);
+		else
+			parse_param(av[counter]);
 		counter++;
 	}
 }

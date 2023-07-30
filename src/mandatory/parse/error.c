@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   short.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:31:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/30 05:54:24 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/07/30 04:27:16 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/07/30 06:01:11 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-t_bool	is_arg_short(char *arg)
-{
-	if (arg[0] != '-' || ft_strlen(arg) != 2)
-		return (FALSE);
-	arg++;
-	if (!ft_is_str(arg, ft_isalnum))
-		return (FALSE);
-	ft_dprintf(DEBUG_FD, "[parse] [%s] is short");
-	return (TRUE);
-}
-
-void	parse_arg_short(char *arg)
+void	parse_error(void)
 {
 
 }

@@ -1,8 +1,13 @@
 # SRCS
-SRC_C_MANDATORY := main.c \
+SRC_C_MANDATORY := free.c \
+				   init.c \
+				   main.c \
 				   parse/arg.c \
-				   parse/long.c \
-				   parse/short.c
+				   parse/error.c \
+				   parse/param.c \
+				   parse/short.c \
+				   singleton/conf.c \
+				   singleton/error.c
 
 SRC_C_BONUS := main.c
 
