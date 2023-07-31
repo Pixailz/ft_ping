@@ -4,4 +4,3 @@
 [submodule "rsc/helper"]
 	path = rsc/helper
 	url = git@github.com:Pixailz/helper
-	branch = ft_ping
