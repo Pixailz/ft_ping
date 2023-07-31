@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/30 05:58:43 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/07/31 06:46:16 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,34 @@ typedef struct s_conf
 	t_uint32			flag;
 }		t_conf;
 
-// PARSE
-void	parse_arg(int ac, char **av);
-void	parse_arg_short(char *arg);
-void	parse_param(char *param);
+// free.c
+void		free_data(void);
 
-t_bool	is_arg_short(char *arg);
+// init.c
+void		init_data(void);
 
-// SINGLETON
-t_err	*get_error(void);
-t_conf	*get_conf(void);
+// main.c
+int			main(int ac, char **av);
 
-// DATASET
-void	init_data(void);
-void	free_data(void);
+// arg.c
+void		parse_arg(int ac, char **av);
+
+// error.c
+void		parse_error(void);
+
+// param.c
+void		parse_param(char *param);
+
+// short.c
+t_bool		is_arg_short(char *arg);
+void		parse_arg_short(char *arg);
+
+// conf.c
+t_conf		*get_conf(void);
+
+// error.c
+t_err		*get_error(void);
+void		set_error_malloc(t_errno value);
+void		set_error(t_emode mode, t_errno value);
 
 #endif //FT_PING_H
