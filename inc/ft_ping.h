@@ -48,23 +48,23 @@ void		init_data(void);
 // main.c
 int			main(int ac, char **av);
 
-// arg.c
+// parse/arg.c
 void		parse_arg(int ac, char **av);
 
-// error.c
+// parse/error.c
 void		parse_error(void);
 
-// param.c
+// parse/param.c
 void		parse_param(char *param);
 
-// short.c
+// parse/short.c
 t_bool		is_arg_short(char *arg);
 void		parse_arg_short(char *arg);
 
-// conf.c
+// singleton/conf.c
 t_conf		*get_conf(void);
 
-// error.c
+// singleton/error.c
 t_err		*get_error(void);
 void		set_error_malloc(t_errno value);
 void		set_error(t_emode mode, t_errno value);

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 05:07:18 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/30 05:51:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/08/01 03:11:26 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	parse_param(char *param)
 {
-
+	(void)param;
 }

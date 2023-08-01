@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:31:44 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/30 05:54:24 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/08/01 03:11:41 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ t_bool	is_arg_short(char *arg)
 
 void	parse_arg_short(char *arg)
 {
-
+	(void)arg;
 }
