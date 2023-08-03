@@ -2,8 +2,8 @@
 PB_BEGIN_TS			:= 0
 PB_LOAD_TTS			:= 0.2
 PB_INDEX			:= 0
-SCREEN_COL			= $(shell tput cols)
-SCREEN_ROW			= $(shell tput lines)
+SCREEN_COL			= $$(TERM=xterm-256color tput cols)
+SCREEN_ROW			= $$(TERM=xterm-256color tput lines)
 
 # UNICODE CHAR
 DOWN_8				:="⣿"
