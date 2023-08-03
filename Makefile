@@ -80,7 +80,7 @@ endif
 ### HELPER
 
 helper:				export_vars
-> ./rsc/helper/helper
+> HELPER_SETUP_NAME="ft_ping" ./rsc/helper/helper
 
 export_vars:
 export MK_DIR
