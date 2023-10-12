@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/07/31 06:46:16 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:05:13 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "libft_memory.h"
 #include "libft_print.h"
-#include "libft_error.h"
 
 # define DEBUG			1
 # define DEBUG_FD		420
