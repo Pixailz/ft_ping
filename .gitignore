@@ -2,3 +2,6 @@
 obj/*
 ft_ping
 ft_ping_bonus
+
+# LOG
+exec.log
