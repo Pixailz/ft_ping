@@ -1,11 +1,5 @@
 # ft_ping
 
-## Error
-
-### Malloc
-
-|||
-
 ## ERRNO
 
 ### Malloc

@@ -4,8 +4,6 @@ SRC_C_MANDATORY := free.c \
 				   main.c \
 				   parse/arg.c \
 				   parse/error.c \
-				   parse/param.c \
-				   parse/short.c \
 				   singleton/conf.c \
 				   singleton/error.c
 

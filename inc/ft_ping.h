@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/12 20:05:13 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/12 20:19:27 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # define DEBUG			1
 # define DEBUG_FD		420
 # define OPT_SHORT		"v?"
-
-# define	H_ERROR		"[" RED "ERROR" RST "]" SEP
 
 typedef enum e_emode
 {
@@ -42,23 +40,19 @@ typedef struct s_conf
 void		free_data(void);
 
 // init.c
-void		init_data(void);
+t_errno		init_data(void);
 
 // main.c
 int			main(int ac, char **av);
 
 // parse/arg.c
+t_bool		is_arg_short(char *arg);
 void		parse_arg(int ac, char **av);
+void		parse_long(char *arg);
+void		parse_short(char *arg);
 
 // parse/error.c
 void		parse_error(void);
-
-// parse/param.c
-void		parse_param(char *param);
-
-// parse/short.c
-t_bool		is_arg_short(char *arg);
-void		parse_arg_short(char *arg);
 
 // singleton/conf.c
 t_conf		*get_conf(void);
