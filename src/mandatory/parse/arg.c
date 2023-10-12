@@ -6,46 +6,47 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:33:02 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/12 20:24:17 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/12 21:24:32 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-t_bool	is_arg_short(char *arg)
+int	get_arg_type(char *arg)
 {
-	if (arg[0] != '-' || ft_strlen(arg) != 2)
-		return (FALSE);
-	arg++;
-	if (!ft_is_str(arg, ft_isalnum))
-		return (FALSE);
-	ft_dprintf(DEBUG_FD, "[parse] [%s] is short", arg);
-	return (TRUE);
+	t_bool	type = 0;
+
+	if (arg[0] != '-')
+		return (type);
+	if (arg[1] == '-')
+		type = 2;
+	else
+		type = 1;
+	ft_dprintf(DEBUG_FD, "arg [%s] is of type: %d\n", arg, type);
+	return (type);
 }
 
 void	parse_arg(int ac, char **av)
 {
 	int	counter;
+	int	arg_type;
 
 	counter = 1;
 	(void)ac;
 	while (av[counter])
 	{
-		if (is_arg_short(av[counter]))
-			parse_short(av[counter] + 1);
-		else
+		arg_type = get_arg_type(av[counter]);
+		if (!arg_type)
+			parse_argument(av[counter]);
+		else if (arg_type == 1)
+			parse_short(av[counter]);
+		else if (arg_type == 2)
 			parse_long(av[counter]);
 		counter++;
 	}
 }
 
-void	parse_long(char *arg)
-{
-	(void)arg;
-}
-
-
-void	parse_short(char *arg)
+void	parse_argument(char *arg)
 {
 	(void)arg;
 }

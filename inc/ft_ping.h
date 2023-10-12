@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/12 20:19:27 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/12 21:30:26 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,18 @@ t_errno		init_data(void);
 int			main(int ac, char **av);
 
 // parse/arg.c
-t_bool		is_arg_short(char *arg);
+int			get_arg_type(char *arg);
 void		parse_arg(int ac, char **av);
-void		parse_long(char *arg);
-void		parse_short(char *arg);
+void		parse_argument(char *arg);
 
 // parse/error.c
 void		parse_error(void);
+
+// parse/long.c
+void		parse_long(char *arg);
+
+// parse/short.c
+void		parse_short(char *arg);
 
 // singleton/conf.c
 t_conf		*get_conf(void);
