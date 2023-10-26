@@ -6,16 +6,17 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/12 20:18:55 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/27 01:07:58 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	init_data();
-	parse_arg(ac, av);
+	if (ac > 1)
+		parse_arg(ac, av);
 	free_data();
 	return (0);
 }

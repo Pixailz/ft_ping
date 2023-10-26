@@ -6,15 +6,16 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/12 21:30:26 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/27 01:03:44 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PING_H
 # define FT_PING_H
 
-#include "libft_memory.h"
-#include "libft_print.h"
+# include "libft_memory.h"
+# include "libft_print.h"
+# include "libft_parsing.h"
 
 # define DEBUG			1
 # define DEBUG_FD		420
@@ -40,31 +41,20 @@ typedef struct s_conf
 void		free_data(void);
 
 // init.c
-t_errno		init_data(void);
+t_bin		init_data(void);
 
 // main.c
 int			main(int ac, char **av);
 
-// parse/arg.c
-int			get_arg_type(char *arg);
+// parsing.c
 void		parse_arg(int ac, char **av);
-void		parse_argument(char *arg);
-
-// parse/error.c
-void		parse_error(void);
-
-// parse/long.c
-void		parse_long(char *arg);
-
-// parse/short.c
-void		parse_short(char *arg);
 
 // singleton/conf.c
 t_conf		*get_conf(void);
 
 // singleton/error.c
 t_err		*get_error(void);
-void		set_error_malloc(t_errno value);
-void		set_error(t_emode mode, t_errno value);
+void		set_error_malloc(t_bin value);
+void		set_error(t_emode mode, t_bin value);
 
 #endif //FT_PING_H

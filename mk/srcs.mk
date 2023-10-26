@@ -2,10 +2,7 @@
 SRC_C_MANDATORY := free.c \
 				   init.c \
 				   main.c \
-				   parse/arg.c \
-				   parse/error.c \
-				   parse/long.c \
-				   parse/short.c \
+				   parsing.c \
 				   singleton/conf.c \
 				   singleton/error.c
 
