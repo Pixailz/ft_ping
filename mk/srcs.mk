@@ -1,5 +1,6 @@
 # SRCS
 SRC_C_MANDATORY := free.c \
+				   help.c \
 				   init.c \
 				   main.c \
 				   parsing.c \

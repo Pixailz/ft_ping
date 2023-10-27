@@ -88,7 +88,7 @@ export SRC_DIR
 
 ### RUN
 run:					re
-> ./$(TARGET)
+> ./$(TARGET) --usage
 
 ### CLEAN
 clean:

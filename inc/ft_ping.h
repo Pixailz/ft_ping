@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/27 01:03:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:57:44 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # include "libft_parsing.h"
 
 # define DEBUG			1
-# define DEBUG_FD		420
-# define OPT_SHORT		"v?"
+# define VERSION		"0.0.1"
 
 typedef enum e_emode
 {
@@ -40,6 +39,12 @@ typedef struct s_conf
 // free.c
 void		free_data(void);
 
+// help.c
+void		unknown_arg(char *prog_path);
+t_bool		version(void);
+t_bool		usage(void);
+t_bool		help(void);
+
 // init.c
 t_bin		init_data(void);
 
@@ -47,6 +52,8 @@ t_bin		init_data(void);
 int			main(int ac, char **av);
 
 // parsing.c
+t_bool		post_parse_opt(t_opt opt);
+void		post_parse(char *prog_path);
 void		parse_arg(int ac, char **av);
 
 // singleton/conf.c

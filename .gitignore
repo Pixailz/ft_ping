@@ -5,3 +5,6 @@ ft_ping_bonus
 
 # LOG
 exec.log
+
+# .vscode
+.vscode
