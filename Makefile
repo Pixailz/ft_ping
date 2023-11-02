@@ -87,7 +87,7 @@ export MK_DIR
 export SRC_DIR
 
 ### RUN
-run:					re
+run:					setup $(TARGET)
 > ./$(TARGET) --usage
 
 ### CLEAN

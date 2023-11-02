@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/27 02:57:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/10/27 21:54:59 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft_memory.h"
 # include "libft_print.h"
 # include "libft_parsing.h"
+# include "libft_network/ipv4.h"
 
 # define DEBUG			1
 # define VERSION		"0.0.1"
@@ -40,9 +41,10 @@ typedef struct s_conf
 void		free_data(void);
 
 // help.c
-void		unknown_arg(char *prog_path);
-t_bool		version(void);
-t_bool		usage(void);
+void		help_header(void);
+void		help_part_1(void);
+void		help_part_2(void);
+void		help_footer(void);
 t_bool		help(void);
 
 // init.c
@@ -52,7 +54,9 @@ t_bin		init_data(void);
 int			main(int ac, char **av);
 
 // parsing.c
+void		unknown_arg(char *prog_path);
 t_bool		post_parse_opt(t_opt opt);
+void		post_parse_value(char *value);
 void		post_parse(char *prog_path);
 void		parse_arg(int ac, char **av);
 
@@ -63,5 +67,11 @@ t_conf		*get_conf(void);
 t_err		*get_error(void);
 void		set_error_malloc(t_bin value);
 void		set_error(t_emode mode, t_bin value);
+
+// usage.c
+t_bool		usage(void);
+
+// version.c
+t_bool		version(void);
 
 #endif //FT_PING_H

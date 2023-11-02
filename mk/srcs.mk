@@ -5,7 +5,9 @@ SRC_C_MANDATORY := free.c \
 				   main.c \
 				   parsing.c \
 				   singleton/conf.c \
-				   singleton/error.c
+				   singleton/error.c \
+				   usage.c \
+				   version.c
 
 SRC_C_BONUS := main.c
 
