@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:38:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/29 18:19:49 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/14 06:59:00 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	help_header(void)
 {
 	ft_putendl_fd("\
-Usage: ping [OPTION...] HOST ...\n\
+Usage: " PROG_NAME " [OPTION...] HOST ...\n\
 Send ICMP ECHO_REQUEST packets to network hosts.\n", 1);
 }
 

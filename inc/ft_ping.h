@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/10/27 21:54:59 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:17:50 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,39 @@
 # include "libft_parsing.h"
 # include "libft_network/ipv4.h"
 
-# define DEBUG			1
-# define VERSION		"0.0.1"
+# include "netinet/ip_icmp.h"
+/*
+ ICMP_ECHO
+ */
+
+# include "sys/time.h"
+/*
+ gettimeofday()
+ */
+
+# define PROG_NAME			"ft_ping"
+# define DEBUG				1
+# define VERSION			"0.0.2"
+
+# define PING_TTL			64
+
+/*
+ * packet structure :
+ *   [ IP header    ]
+ *   [ ICMP header  ]
+ *   [ ICMP payload ]
+ */
+
+# define LEN_HDR_IP			24
+# define LEN_HDR_ICMP_ECHO	8
+# define LEN_ICMP_ECHO_PAY	56
+
+# define PACKET_SIZE		LEN_HDR_IP + LEN_HDR_ICMP_ECHO + LEN_ICMP_ECHO_PAY
 
 typedef enum e_emode
 {
-	MALLOC,
+	E_MALLOC = BIT_01,
 }	t_emode;
-
-typedef struct s_err
-{
-	t_uint32			malloc;
-	t_uint32			parse;
-}		t_err;
-
-typedef struct s_conf
-{
-	t_uint32			flag;
-}		t_conf;
-
-// free.c
-void		free_data(void);
 
 // help.c
 void		help_header(void);
@@ -47,29 +59,38 @@ void		help_part_2(void);
 void		help_footer(void);
 t_bool		help(void);
 
-// init.c
-t_bin		init_data(void);
-
 // main.c
-int			main(int ac, char **av);
+int			get_socket(void);
+void		send_echo(int socket, char *packet, const struct sockaddr *dst);
+int			main(void);
+
+// packet_icmp.c
+void		ft_fill_hdr_icmp_echo(t_hdr_icmp_echo *packet, \
+												t_uint16 id, t_uint16 sequence);
+void		ft_fill_icmp_echo(void *packet, t_uint16 sequence);
+
+// packet_ip.c
+void		ft_fill_hdr_ip(t_hdr_ip *packet, t_uint32 dst);
+
+// packet_print.c
+void		packet_print_iphdr(t_hdr_ip *pkt);
+void		packet_print_icmphdr(t_hdr_icmp_echo *pkt);
+void		packet_print_icmpdata(void *data);
+void		packet_print(void *pkt);
+void		packet_print_raw(char *pkt);
 
 // parsing.c
-void		unknown_arg(char *prog_path);
-t_bool		post_parse_opt(t_opt opt);
-void		post_parse_value(char *value);
-void		post_parse(char *prog_path);
-void		parse_arg(int ac, char **av);
+t_bool		is_cmd_opt(t_opt opt);
+void		post_parse_cmd_opt(void);
+void		parse_opts(int ac, char **av);
 
-// singleton/conf.c
-t_conf		*get_conf(void);
-
-// singleton/error.c
-t_err		*get_error(void);
-void		set_error_malloc(t_bin value);
-void		set_error(t_emode mode, t_bin value);
+// process.c
+void		process_args(void);
 
 // usage.c
 t_bool		usage(void);
+void		try_help_usage(void);
+void		unknown_arg(void);
 
 // version.c
 t_bool		version(void);

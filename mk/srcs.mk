@@ -1,11 +1,11 @@
 # SRCS
-SRC_C_MANDATORY := free.c \
-				   help.c \
-				   init.c \
+SRC_C_MANDATORY := help.c \
 				   main.c \
+				   packet_icmp.c \
+				   packet_ip.c \
+				   packet_print.c \
 				   parsing.c \
-				   singleton/conf.c \
-				   singleton/error.c \
+				   process.c \
 				   usage.c \
 				   version.c
 

@@ -1,5 +1,17 @@
 # ft_ping
 
+## Valgrind
+
+1. ALL
+   ```sh
+   valgrind \
+   	--leak-check=full \
+   	--show-leak-kinds=all \
+   	--trace-children=yes \
+   	--track-fds=yes \
+   	./ft_ping google.com
+   ```
+
 ## submodules
 
 ### update
