@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/15 01:50:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:35:12 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	get_socket(void)
 }
 
 # include <stdio.h>
+# include <arpa/inet.h>
 
 void	send_echo(int socket, char *packet, const struct sockaddr *dst)
 {

@@ -65,16 +65,16 @@ void		send_echo(int socket, char *packet, const struct sockaddr *dst);
 int			main(void);
 
 // packet_icmp.c
-void		ft_fill_hdr_icmp_echo(t_hdr_icmp_echo *packet, \
+void		ft_fill_hdr_icmp_echo(struct icmphdr *packet, \
 												t_uint16 id, t_uint16 sequence);
 void		ft_fill_icmp_echo(void *packet, t_uint16 sequence);
 
 // packet_ip.c
-void		ft_fill_hdr_ip(t_hdr_ip *packet, t_uint32 dst);
+void		ft_fill_hdr_ip(struct iphdr *packet, t_uint32 dst);
 
 // packet_print.c
-void		packet_print_iphdr(t_hdr_ip *pkt);
-void		packet_print_icmphdr(t_hdr_icmp_echo *pkt);
+void		packet_print_iphdr(struct iphdr *pkt);
+void		packet_print_icmphdr(struct icmphdr *pkt);
 void		packet_print_icmpdata(void *data);
 void		packet_print(void *pkt);
 void		packet_print_raw(char *pkt);

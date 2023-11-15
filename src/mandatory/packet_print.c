@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 21:20:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/15 01:41:21 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:39:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static const char	*g_pkt_iphdr = \
 "|" PKT_32 "|\n" \
 "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n" \
 "|" PKT_32 "|\n" \
-"+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n" \
-"|" PKT_24 "|" PKT_4 "|\n" \
 "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
 
 static const char	*g_pkt_icmp_header = \
@@ -50,35 +48,35 @@ static const char	*g_pkt_icmp_header = \
 "|" PKT_16 "|" PKT_16 "|\n" \
 "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
 
-// void	packet_print_iphdr(struct iphdr *pkt)
-// {
-// 	printf(g_pkt_iphdr, pkt->version, pkt->internet_header_len,
-// 		pkt->type_of_service, pkt->total_len, pkt->identification, pkt->flags,
-// 		pkt->fragment_off, pkt->ttl, pkt->proto, pkt->header_checksum,
-// 		pkt->src_addr, pkt->dst_addr, pkt->options, pkt->padding);
-// }
+void	packet_print_iphdr(struct iphdr *pkt)
+{
+	// TODO FIX WRONG VALUE FOR FLAGS / ID / FRAG_OFF
+	printf(g_pkt_iphdr, pkt->version, pkt->ihl, pkt->tos, pkt->tot_len,
+		pkt->id, pkt->frag_off, pkt->ttl,
+		pkt->protocol, pkt->check, pkt->saddr, pkt->daddr);
+}
 
-// void	packet_print_icmphdr(struct icmphdr *pkt)
-// {
-// 	printf(g_pkt_icmp_header, pkt->type, pkt->code, pkt->checksum,
-// 		pkt->identifier, pkt->sequence);
-// }
+void	packet_print_icmphdr(struct icmphdr *pkt)
+{
+	printf(g_pkt_icmp_header, pkt->type, pkt->code, pkt->checksum,
+		pkt->un.echo.id, pkt->un.echo.sequence);
+}
 
-// void	packet_print_icmpdata(void *data)
-// {
-// 	struct timeval	*tv;
+void	packet_print_icmpdata(void *data)
+{
+	struct timeval	*tv;
 
-// 	tv = (struct timeval *)(data + 4);
-// 	printf("tv.sec %ld\n", tv->tv_sec);
-// 	printf("tv.usec %ld\n", tv->tv_usec);
-// }
+	tv = (struct timeval *)(data + 4);
+	printf("tv.sec %ld\n", tv->tv_sec);
+	printf("tv.usec %ld\n", tv->tv_usec);
+}
 
-// void	packet_print(void *pkt)
-// {
-// 	packet_print_iphdr(pkt);
-// 	packet_print_icmphdr(pkt + LEN_HDR_IP);
-// 	packet_print_icmpdata(pkt + LEN_HDR_IP + LEN_HDR_ICMP_ECHO);
-// }
+void	packet_print(void *pkt)
+{
+	packet_print_iphdr(pkt);
+	packet_print_icmphdr(pkt + LEN_HDR_IP);
+	packet_print_icmpdata(pkt + LEN_HDR_IP + LEN_HDR_ICMP_ECHO);
+}
 
 void	packet_print_raw(char *pkt)
 {
