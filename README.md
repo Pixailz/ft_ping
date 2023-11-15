@@ -1,5 +1,12 @@
 # ft_ping
 
+## usefull links
+
+1. Internet Protocol
+   [RFC791](https://datatracker.ietf.org/doc/html/rfc791)
+1. Internet Control Message Protocol
+   [RFC792](https://datatracker.ietf.org/doc/html/rfc792)
+
 ## Valgrind
 
 1. ALL
