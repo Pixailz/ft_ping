@@ -7,8 +7,15 @@
 1. Internet Control Message Protocol
    [RFC792](https://datatracker.ietf.org/doc/html/rfc792)
 
-## Valgrind
+## USEFULL COMMAND
 
+### DEBUG_FD
+
+`sudo bash -c "./ft_ping 127.0.0.1 DEBUG_FD>exec.log"`
+   > [!NOTE]
+   > This command output DEBUG_FD to a log file with sudo privileges
+
+### VALGRIND
 1. ALL
    ```sh
    valgrind \
