@@ -6,13 +6,13 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/14 08:08:53 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 00:42:46 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-static	t_int4	get_ip(char *value)
+static t_int4	get_ip(char *value)
 {
 	t_int4	ip_tmp;
 
@@ -29,19 +29,32 @@ static	t_int4	get_ip(char *value)
 	return (ip_tmp);
 }
 
+static void	setup_target(char *value)
+{
+	t_conf				*conf;
+	struct sockaddr_in	addr;
+
+	conf = get_conf();
+	conf->cur_target.value = value;
+	ft_memset(&addr, 0, sizeof(struct sockaddr_in));
+	conf->cur_target.ip = ft_htonl(get_ip(value));
+	ft_hdr_ip_set_dst(conf->cur_target.ip);
+	addr.sin_addr.s_addr = conf->cur_target.ip;
+	conf->cur_target.addr = *((struct sockaddr *)&addr);
+	conf->sequence = 0;
+}
+
 void	process_args(void)
 {
 	t_opts		*opts;
-	t_opt_value	*ptr;
-	t_int4		tmp_ip;
+	t_opt_value	*target;
 
 	opts = ft_get_opts(0);
-	ptr = opts->value;
-	while (ptr)
+	target = opts->value;
+	while (target)
 	{
-		tmp_ip = get_ip(ptr->value);
-		ft_putip_fd(tmp_ip, 1);
-		ft_putstr_fd("\n", 1);
-		ptr = ptr->next;
+		setup_target(target->value);
+		ft_send_echo();
+		target = target->next;
 	}
 }

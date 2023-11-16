@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/14 07:41:53 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:54:16 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	post_parse_cmd_opt(void)
 	}
 }
 
-void	parse_opts(int ac, char **av)
+t_bin	parse_opts(int ac, char **av)
 {
 	t_opts		*opts;
 
@@ -57,6 +57,10 @@ void	parse_opts(int ac, char **av)
 	ft_optparse(ac, av);
 	opts = ft_get_opts(0);
 	if (opts->err & ERR_UNK_OPT)
-		return (unknown_arg());
+	{
+		unknown_arg();
+		return (BIT_01);
+	}
 	post_parse_cmd_opt();
+	return (BIT_00);
 }

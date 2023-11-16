@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   version.c                                          :+:      :+:    :+:   */
+/*   checksum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 06:03:14 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/14 06:59:10 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/11/16 22:04:24 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/11/16 23:14:36 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-t_bool	version(void)
+t_uint16	ft_checksum(char *data, t_size size)
 {
-	ft_printf(PROG_NAME " (ft_libft) %s\n\n", VERSION);
-	ft_putendl_fd("Written by Pixailz", 1);
-	return (TRUE);
+	t_uint32	sum;
+	t_size		i;
+
+	sum = 0;
+	i = 0;
+	while (i < size)
+	{
+		sum += ft_ntohs(*((t_uint16 *)(data + i)));
+		if (sum >> 16)
+			sum -= 0xffff;
+		i += 2;
+	}
+	if (size & 1)
+	{
+		sum += ft_ntohs(*((t_uint16 *)(data + size - 1)));
+		if (sum > 0xffff)
+			sum -= 0xffff;
+	}
+	return (ft_htons(~sum));
 }

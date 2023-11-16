@@ -1,11 +1,17 @@
 # SRCS
-SRC_C_MANDATORY := help.c \
+SRC_C_MANDATORY := checksum.c \
+				   conf.c \
+				   free.c \
+				   help.c \
+				   init.c \
 				   main.c \
 				   packet_icmp.c \
 				   packet_ip.c \
 				   packet_print.c \
 				   parsing.c \
+				   ping_echo.c \
 				   process.c \
+				   socket.c \
 				   usage.c \
 				   version.c
 
