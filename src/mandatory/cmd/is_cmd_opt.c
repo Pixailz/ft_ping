@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_cmd_opt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 14:51:49 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/11/17 12:58:49 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-void	ft_ping(int ac, char **av)
+t_bool	is_cmd_opt(t_opt opt)
 {
-	if (init_config())
-		return ;
-	if (init_signal())
-		return ;
-	if (parse_opts(ac, av))
-		return ;
-	if (init_socket())
-		return ;
-	init_packet();
-	process_args();
-}
-
-int	main(int ac, char **av)
-{
-	if (ac > 1)
-	{
-		ft_ping(ac, av);
-		free_data();
-	}
-	else
-	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
-		try_help_usage();
-	}
-	return (get_conf()->stats.nb_err != 0);
+	if (!ft_strcmp(opt.name, "help"))
+		return (help());
+	if (!ft_strcmp(opt.name, "usage"))
+		return (usage());
+	if (!ft_strcmp(opt.name, "version"))
+		return (version());
+	return (FALSE);
 }

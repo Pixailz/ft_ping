@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 07:45:47 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:37:27 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_ts	ft_getnow_ms(void)
 
 	if (gettimeofday(&tv, NULL) == -1)
 		return (0);
-	return (tv.tv_sec * 1000000 + tv.tv_usec);
+	return (tv.tv_sec * A_SEC + tv.tv_usec);
 }
 
 void	update_stats_rtt(t_ts rtt, t_uint16 sequence)

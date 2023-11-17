@@ -1,42 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 14:51:49 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/11/17 11:10:09 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/11/17 11:10:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-void	ft_ping(int ac, char **av)
+void	setup_exit(void)
 {
-	if (init_config())
-		return ;
-	if (init_signal())
-		return ;
-	if (parse_opts(ac, av))
-		return ;
-	if (init_socket())
-		return ;
-	init_packet();
-	process_args();
-}
-
-int	main(int ac, char **av)
-{
-	if (ac > 1)
-	{
-		ft_ping(ac, av);
-		free_data();
-	}
-	else
-	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
-		try_help_usage();
-	}
-	return (get_conf()->stats.nb_err != 0);
+	;
 }

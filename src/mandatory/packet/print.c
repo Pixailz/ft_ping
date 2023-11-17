@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 21:20:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 09:06:43 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:37:43 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	packet_print_icmpdata(void *data)
 	tv = (struct timeval *)(data);
 	ft_memcpy(payload, data + PADDING, LEN_ICMP_ECHO_PAY);
 	payload[LEN_ICMP_ECHO_PAY] = 0;
-	dprintf(DEBUG_FD, "timestamp (ms) %ld\n", (tv->tv_sec * 1000000) + tv->tv_usec);
+	dprintf(DEBUG_FD, "timestamp (ms) %ld\n", \
+											(tv->tv_sec * A_SEC) + tv->tv_usec);
 	dprintf(DEBUG_FD, "payload \n");
 	packet_print_raw(payload, LEN_ICMP_ECHO_PAY);
 }

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 10:17:05 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:19:23 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,7 @@
 
 # define PROG_NAME				"ft_ping"
 # define DEBUG					1
-# define VERSION				"1.1.0"
-
-// Time To Live of the iphdr
-# define FT_PING_TTL			64
-// Number of packet to send
-# define FT_PING_PKT_N			2
-// Interval, in sec, between each packet
-# define FT_PING_PKT_INTERVAL	1
-// Timeout, in sec, before aborting
-# define FT_PING_TIMEOUT_RECV	2
+# define VERSION				"1.2.0"
 
 // Identification of the iphdr
 # define FT_PING_IP_ID			420
@@ -197,9 +188,33 @@ typedef struct s_stats
 	t_ts		rtt_stddev;
 }	t_stats;
 
+// Number of packet to send
+// -c
+# define FT_PING_NB_PKT			-1
+// Second of time execution allowed
+// -w
+# define FT_PING_TIMEOUT		64
+// Second to set SO_RCVTIMEO And second before recvmsg receive SIGALRM
+// -W
+# define FT_PING_LINGER			10
+// Time To Live of the iphdr
+// --ttl
+# define FT_PING_TTL			64
+// Interval, in sec, between each packet
+// -i
+# define FT_PING_INTERVAL		1
+
 typedef struct s_conf
 {
 	int			socket;
+
+	t_int32		nb_packet;
+	t_int32		timeout;
+	t_int32		linger;
+	t_int32		interval;
+	t_int32		ttl;
+
+	t_ts		begin;
 
 	t_uint16	id_icmp;
 	t_uint16	sequence;
@@ -210,6 +225,8 @@ typedef struct s_conf
 
 	t_stats		stats;
 }	t_conf;
+
+# define A_SEC					1000000
 
 /* ########################################################################## */
 /* FILES */
@@ -222,6 +239,9 @@ void		help_part_2(void);
 void		help_footer(void);
 t_bool		help(void);
 
+// cmd/is_cmd_opt.c
+t_bool		is_cmd_opt(t_opt opt);
+
 // cmd/usage.c
 t_bool		usage(void);
 void		try_help_usage(void);
@@ -232,6 +252,9 @@ t_bool		version(void);
 
 // data/conf.c
 t_conf		*get_conf(void);
+
+// data/exit.c
+void		setup_exit(void);
 
 // data/free.c
 void		free_conf(void);
@@ -244,9 +267,16 @@ t_bin		init_packet(void);
 t_bin		init_signal(void);
 
 // data/parsing.c
-t_bool		is_cmd_opt(t_opt opt);
-void		post_parse_cmd_opt(void);
+t_bool		post_parse_cmd_opt(void);
 t_bin		parse_opts(int ac, char **av);
+
+// data/post_parse.c
+t_bin		post_parse(void);
+
+// error.c
+void		print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn);
+void		print_icmp_timeout(void);
+void		print_icmp_error(char *pkt);
 
 // main.c
 void		ft_ping(int ac, char **av);
@@ -279,10 +309,10 @@ void		process_args(void);
 void		recv_pong(void);
 
 // run.c
-void		ft_ping_run(__attribute__((unused)) int sig);
+void		ft_ping_run();
 
 // send_ping.c
-void		send_ping(const struct sockaddr *dst);
+t_bool		send_ping(const struct sockaddr *dst);
 
 // socket.c
 int			ft_create_sock_echo(void);

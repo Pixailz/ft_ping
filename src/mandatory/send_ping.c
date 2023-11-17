@@ -6,13 +6,13 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 09:06:45 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:50:59 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-void	send_ping(const struct sockaddr *dst)
+t_bool	send_ping(const struct sockaddr *dst)
 {
 	t_conf	*conf;
 	long	ret;
@@ -25,5 +25,8 @@ void	send_ping(const struct sockaddr *dst)
 	conf->stats.nb_trans++;
 	dprintf(DEBUG_FD, "Sended packet\n");
 	packet_print(conf->packet);
-	alarm(FT_PING_PKT_INTERVAL);
+	if (ft_getnow_ms() - conf->begin >= conf->timeout * A_SEC)
+		return TRUE;
+	alarm(conf->linger);
+	return FALSE;
 }

@@ -31,6 +31,5 @@
 
 1. handle more signal
    1. CTRL-C
-1. remove perror()
-   1. more clean message error
-1. fix timeout
+   1. _atexit()
+1. finished some opt

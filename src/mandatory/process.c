@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 07:52:32 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:00:00 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ static t_int4	get_ip(char *value)
 	return (ip_tmp);
 }
 
+static void	reset_stats(t_stats *sts)
+{
+	sts->send_ts = 0;
+	sts->nb_recv = 0;
+	sts->nb_trans = 0;
+	sts->rtt_min = 0;
+	sts->rtt_avg = 0;
+	sts->rtt_max = 0;
+	sts->rtt_stddev = 0;
+}
+
 static void	setup_target(char *value)
 {
 	t_conf				*conf;
@@ -45,8 +56,11 @@ static void	setup_target(char *value)
 	conf->cur_target.addr = *((struct sockaddr *)&addr);
 	conf->sequence = -1;
 	ft_hdr_icmp_seq_inc();
-	ft_memset(&conf->stats, 0, sizeof(conf->stats));
+	reset_stats(&conf->stats);
 	printf(FMT_STATS_PING, value, ip_str, LEN_ICMP_ECHO_PAY + PADDING);
+	if (ft_optget("verbose")->is_present)
+		printf(FMT_STATS_PING_VERBOSE, conf->id_icmp, conf->id_icmp);
+	printf("\n");
 }
 
 void	process_args(void)
@@ -56,16 +70,19 @@ void	process_args(void)
 	t_conf		*conf;
 
 	conf = get_conf();
+	conf->begin = ft_getnow_ms();
 	opts = ft_get_opts(0);
 	target = opts->value;
 	while (target)
 	{
 		setup_target(target->value);
-		while (conf->stats.nb_trans != FT_PING_PKT_N)
+		while (conf->stats.nb_trans != conf->nb_packet)
 		{
-			ft_ping_run(0);
-			if (conf->stats.nb_trans != FT_PING_PKT_N)
-				usleep(FT_PING_PKT_INTERVAL * 1000000);
+			ft_ping_run();
+			if (ft_getnow_ms() - conf->begin >= conf->timeout * A_SEC)
+				break ;
+			if (conf->stats.nb_trans != conf->nb_packet)
+				usleep(conf->interval * A_SEC);
 		}
 		print_stats();
 		target = target->next;

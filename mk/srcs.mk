@@ -1,11 +1,15 @@
 # SRCS
 SRC_C_MANDATORY := cmd/help.c \
+				   cmd/is_cmd_opt.c \
 				   cmd/usage.c \
 				   cmd/version.c \
 				   data/conf.c \
+				   data/exit.c \
 				   data/free.c \
 				   data/init.c \
 				   data/parsing.c \
+				   data/post_parse.c \
+				   error.c \
 				   main.c \
 				   packet/checksum.c \
 				   packet/icmp.c \

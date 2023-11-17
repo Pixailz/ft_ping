@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 09:14:24 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:46:04 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void	print_stats(void)
 	conf = get_conf();
 	sts = conf->stats;
 	dprintf(DEBUG_FD, "nb_err %d\n", sts.nb_err);
-	pkt_loss = 100 - ((sts.nb_recv * 100) / sts.nb_trans);
+	if (sts.nb_trans)
+		pkt_loss = 100 - ((sts.nb_recv * 100) / sts.nb_trans);
+	else
+		pkt_loss = 100;
 	printf(FMT_STATS_TRANS, \
 		conf->cur_target.value, \
 		sts.nb_trans, sts.nb_recv, get_color_pkt_loss(pkt_loss), pkt_loss);

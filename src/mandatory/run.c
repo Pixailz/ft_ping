@@ -6,19 +6,20 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 09:45:58 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:51:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-void	ft_ping_run(__attribute__((unused)) int sig)
+void	ft_ping_run()
 {
 	t_conf			*conf;
 	t_icmphdr_echo	*pkt;
 
 	conf = get_conf();
-	send_ping(&conf->cur_target.addr);
+	if (send_ping(&conf->cur_target.addr))
+		return ;
 	recv_pong();
 	ft_hdr_icmp_seq_inc();
 	pkt = (t_icmphdr_echo *)(conf->packet + LEN_HDR_IP);
