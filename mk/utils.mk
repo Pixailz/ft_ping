@@ -28,6 +28,7 @@ GOTO_COL			= $(call P_ANSI,$(1)G)
 
 # ANSI
 ESC					:= \x1b[
+
 ## COLOR
 RST					:= $(ESC)0m
 R					:= $(ESC)31m
@@ -36,13 +37,16 @@ Y					:= $(ESC)33m
 B					:= $(ESC)34m
 M					:= $(ESC)35m
 C					:= $(ESC)36m
-O					:= $(ESC)38;5;214m
+O					:= $(ESC)38;5;208m
+
+## MODIFIER
+BOL					:= $(ESC)1m
 
 ### COMPOSITE
-I					:= $(B)i$(RST)
-W					:= $(O)⚠$(RST)
-P					:= $(G)✓$(RST)
-F					:= $(R)✗$(RST)
+I					:= $(BOL)$(C)*$(RST)
+W					:= $(BOL)$(O)!$(RST)
+P					:= $(BOL)$(G)+$(RST)
+F					:= $(BOL)$(R)-$(RST)
 ASCII_COLOR			:= $(G)
 
 ## CURSOR
