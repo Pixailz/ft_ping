@@ -1,19 +1,23 @@
 # SRCS
-SRC_C_MANDATORY := checksum.c \
-				   conf.c \
-				   free.c \
-				   help.c \
-				   init.c \
+SRC_C_MANDATORY := cmd/help.c \
+				   cmd/usage.c \
+				   cmd/version.c \
+				   data/conf.c \
+				   data/free.c \
+				   data/init.c \
+				   data/parsing.c \
 				   main.c \
-				   packet_icmp.c \
-				   packet_ip.c \
-				   packet_print.c \
-				   parsing.c \
-				   ping_echo.c \
+				   packet/checksum.c \
+				   packet/icmp.c \
+				   packet/ip.c \
+				   packet/print.c \
 				   process.c \
+				   recv_pong.c \
+				   run.c \
+				   send_ping.c \
 				   socket.c \
-				   usage.c \
-				   version.c
+				   stats/print.c \
+				   stats/rtt.c
 
 SRC_C_BONUS := main.c
 

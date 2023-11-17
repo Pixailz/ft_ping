@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:44:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 20:55:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 08:19:04 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	free_data(void)
 {
 	free_conf();
 	ft_free_opts();
+	if (DEBUG > 0)
+		close(DEBUG_FD);
 }

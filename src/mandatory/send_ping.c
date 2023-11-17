@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   send_ping.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 05:14:01 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/11/17 09:06:45 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-void	ft_ping(int ac, char **av)
+void	send_ping(const struct sockaddr *dst)
 {
-	if (init_config())
-		return ;
-	if (init_signal())
-		return ;
-	if (parse_opts(ac, av))
-		return ;
-	if (init_socket())
-		return ;
-	init_packet();
-	process_args();
-}
+	t_conf	*conf;
+	long	ret;
 
-int	main(int ac, char **av)
-{
-	if (ac > 1)
-	{
-		ft_ping(ac, av);
-		free_data();
-	}
-	else
-	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
-		try_help_usage();
-	}
-	return (0);
+	conf = get_conf();
+	ret = sendto(conf->socket, conf->packet, PACKET_SIZE, 0, dst, sizeof(*dst));
+	if (ret == -1)
+		perror("sendto");
+	conf->stats.send_ts = ft_getnow_ms();
+	conf->stats.nb_trans++;
+	dprintf(DEBUG_FD, "Sended packet\n");
+	packet_print(conf->packet);
+	alarm(FT_PING_PKT_INTERVAL);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   packet_ip.c                                        :+:      :+:    :+:   */
+/*   ip.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:53:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 00:40:53 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 04:43:13 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	ft_hdr_ip_fill(t_iphdr *packet)
 	packet->checksum = 0;
 	packet->src_addr = INADDR_ANY;
 	packet->dst_addr = 0;
+# if FT_PING_USE_IP_OPTS == 1
 	packet->options = ft_htons(0);
 	packet->padding = 0;
+# endif // FT_PING_USE_IP_OPTS == 1
 	dprintf(DEBUG_FD, "iphdr: packet len %ld\n", sizeof(*packet));
 }

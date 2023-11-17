@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 05:05:03 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 19:38:42 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 04:09:45 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ t_conf	*get_conf(void)
 
 	if (conf == NULL)
 		conf = (t_conf *)ft_calloc(sizeof(t_conf), 1);
+	conf->id_icmp = getpid() & 0xffff;
 	return (conf);
 }

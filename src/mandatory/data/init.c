@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 00:09:12 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:05:37 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,26 @@ t_bin	init_packet(void)
 	ft_memset(conf->packet, 0, PACKET_SIZE);
 	ft_hdr_ip_fill((void *)conf->packet);
 	ft_hdr_icmp_echo_fill((void *)conf->packet + LEN_HDR_IP);
+	return (BIT_00);
+}
+
+static	void dummy(int sig)
+{
+	(void)sig;
+	dprintf(DEBUG_FD, "SIGALRM received\n");
+}
+
+t_bin	init_signal(void)
+{
+	if (signal(SIGALRM, dummy) == SIG_ERR)
+	{
+		dprintf(2, "signal: failed to set SIGALRM\n");
+		return (BIT_01);
+	}
+	// if (signal(SIGALRM, &ft_ping_run) == SIG_ERR)
+	// {
+	// 	dprintf(2, "signal: failed to set SIGTERM\n");
+	// 	return (BIT_02);
+	// }
 	return (BIT_00);
 }

@@ -18,30 +18,19 @@
 ### VALGRIND
 1. ALL
    ```sh
-   valgrind \
-   	--leak-check=full \
-   	--show-leak-kinds=all \
-   	--trace-children=yes \
-   	--track-fds=yes \
-   	./ft_ping google.com
+   sudo bash -c "valgrind \
+    --leak-check=full \
+    --show-leak-kinds=all \
+    --track-origins=yes \
+    --trace-children=yes \
+    --track-fds=yes \
+    ./ft_ping 127.0.0.1 127.0.0.2 127.0.0.3 DEBUG_FD>exec.log"
    ```
 
-## submodules
+## TODO
 
-### update
-
-```
-git clone git@github.com:Pixailz/ft_ping && cd ft_ping/rsc && rm -r ./helper
-git clone git@github.com:Pixailz/helper && cd ../lib && rm -r ./ft_libft
-git clone git@github.com:Pixailz/ft_libft && cd ft_libft/rsc && rm -r ./helper
-git clone git@github.com:Pixailz/helper && cd ../../..
-```
-
-### update
-
-```
-git pull && cd ./rsc/helper
-git pull && cd ../../lib/ft_libft
-git pull && cd ./rsc/helper
-git pull && cd ../../../../
-```
+1. handle more signal
+   1. CTRL-C
+1. remove perror()
+   1. more clean message error
+1. fix timeout
