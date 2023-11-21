@@ -10,6 +10,7 @@ SRC_C_MANDATORY := cmd/help.c \
 				   data/parsing.c \
 				   data/post_parse.c \
 				   error.c \
+				   interrupt.c \
 				   main.c \
 				   packet/checksum.c \
 				   packet/icmp.c \

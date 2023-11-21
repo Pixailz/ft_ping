@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 02:53:56 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 02:59:37 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ t_bin	init_signal(void)
 		dprintf(2, "signal: failed to set SIGALRM\n");
 		return (BIT_01);
 	}
-	// if (signal(SIGALRM, &ft_ping_run) == SIG_ERR)
-	// {
-	// 	dprintf(2, "signal: failed to set SIGTERM\n");
-	// 	return (BIT_02);
-	// }
+	if (signal(SIGINT, &ft_ping_interrupt) == SIG_ERR)
+	{
+		dprintf(2, "signal: failed to set SIGTINT\n");
+		return (BIT_02);
+	}
 	return (BIT_00);
 }

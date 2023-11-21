@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 15:19:23 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:03:40 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,8 @@ typedef struct s_conf
 	char		packet[PACKET_SIZE];
 
 	t_stats		stats;
+
+	t_bool		interrupted;
 }	t_conf;
 
 # define A_SEC					1000000
@@ -278,8 +280,11 @@ void		print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn);
 void		print_icmp_timeout(void);
 void		print_icmp_error(char *pkt);
 
+// interrupt.c
+void		ft_ping_interrupt(int sig);
+
 // main.c
-void		ft_ping(int ac, char **av);
+t_bin		ft_ping(int ac, char **av);
 int			main(int ac, char **av);
 
 // packet/checksum.c

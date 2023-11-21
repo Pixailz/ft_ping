@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 15:00:00 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:08:26 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	process_args(void)
 	while (target)
 	{
 		setup_target(target->value);
-		while (conf->stats.nb_trans != conf->nb_packet)
+		while (!conf->interrupted && conf->stats.nb_trans != conf->nb_packet)
 		{
 			ft_ping_run();
 			if (ft_getnow_ms() - conf->begin >= conf->timeout * A_SEC)
