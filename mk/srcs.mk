@@ -1,14 +1,11 @@
 # SRCS
 SRC_C_MANDATORY := cmd/help.c \
-				   cmd/is_cmd_opt.c \
 				   cmd/usage.c \
 				   cmd/version.c \
 				   data/conf.c \
 				   data/exit.c \
 				   data/free.c \
 				   data/init.c \
-				   data/parsing.c \
-				   data/post_parse.c \
 				   error.c \
 				   interrupt.c \
 				   main.c \
@@ -16,11 +13,14 @@ SRC_C_MANDATORY := cmd/help.c \
 				   packet/icmp.c \
 				   packet/ip.c \
 				   packet/print.c \
+				   parsing/parse.c \
+				   parsing/post_parse.c \
+				   parsing/post_parse_cmd.c \
+				   parsing/post_parse_conf_1.c \
 				   process.c \
 				   recv_pong.c \
 				   run.c \
 				   send_ping.c \
-				   socket.c \
 				   stats/print.c \
 				   stats/rtt.c
 

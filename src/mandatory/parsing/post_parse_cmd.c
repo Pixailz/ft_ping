@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 03:38:09 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:40:19 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:57:50 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_bool	post_parse_cmd_opt(void)
 	while (ptr)
 	{
 		if (ptr->opt)
-			if (is_cmd_opt(*ptr->opt))
+			if (exec_cmd_opt(*ptr->opt))
 				return TRUE;
 		ptr = ptr->next;
 	}

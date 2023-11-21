@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:31:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:58:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define FT_PING_H
 
 // # define NO_ANSI
+# define PROG_NAME				"ft_ping"
+# define DEBUG					1
+# define VERSION				"1.2.0"
 
 # include "libft_memory.h"
 # include "libft_print.h"
@@ -65,10 +68,6 @@
  */
 
 # include "fmt.h"
-
-# define PROG_NAME				"ft_ping"
-# define DEBUG					1
-# define VERSION				"1.2.5"
 
 // Identification of the iphdr
 # define FT_PING_IP_ID			420
@@ -239,18 +238,15 @@ void		help_header(void);
 void		help_part_1(void);
 void		help_part_2(void);
 void		help_footer(void);
-t_bool		help(void);
-
-// cmd/is_cmd_opt.c
-t_bool		is_cmd_opt(t_opt opt);
+void		help(void);
 
 // cmd/usage.c
-t_bool		usage(void);
+void		usage(void);
 void		try_help_usage(void);
 void		unknown_arg(void);
 
 // cmd/version.c
-t_bool		version(void);
+void		version(void);
 
 // data/conf.c
 t_conf		*get_conf(void);
@@ -264,16 +260,10 @@ void		free_data(void);
 
 // data/init.c
 t_bin		init_config(void);
+int			ft_create_sock_echo(void);
 t_bin		init_socket(void);
 t_bin		init_packet(void);
 t_bin		init_signal(void);
-
-// data/parsing.c
-t_bool		post_parse_cmd_opt(void);
-t_bin		parse_opts(int ac, char **av);
-
-// data/post_parse.c
-t_bin		post_parse(void);
 
 // error.c
 void		print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn);
@@ -307,6 +297,23 @@ void		packet_print_icmpdata(void *data);
 void		packet_print(void *pkt);
 void		packet_print_raw(char *pkt, t_size size);
 
+// parsing/parse.c
+t_bin		parse_opts(int ac, char **av);
+
+// parsing/post_parse.c
+t_bin		post_parse(void);
+
+// parsing/post_parse_cmd.c
+t_bool		exec_cmd_opt(t_opt opt);
+t_bool		post_parse_cmd_opt(void);
+
+// parsing/post_parse_conf_1.c
+void		post_parse_count(t_conf *conf);
+void		post_parse_timeout(t_conf *conf);
+void		post_parse_linger(t_conf *conf);
+void		post_parse_interval(t_conf *conf);
+void		post_parse_ttl(t_conf *conf);
+
 // process.c
 void		process_args(void);
 
@@ -318,9 +325,6 @@ void		ft_ping_run();
 
 // send_ping.c
 t_bool		send_ping(const struct sockaddr *dst);
-
-// socket.c
-int			ft_create_sock_echo(void);
 
 // stats/print.c
 void		print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo);

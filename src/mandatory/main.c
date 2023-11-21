@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:49:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:57:11 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bin	ft_ping(int ac, char **av)
 		return (2);
 	if (init_signal())
 		return (3);
-	ret = parse_opts(ac, av)
+	ret = parse_opts(ac, av);
 	if (ret == 2)
 		return (4);
 	else if (ret == 1)
@@ -29,7 +29,7 @@ t_bin	ft_ping(int ac, char **av)
 		return (5);
 	init_packet();
 	process_args();
-	ret = get_conf()->stats.nb_err != 0
+	ret = get_conf()->stats.nb_err != 0;
 	return (ret);
 }
 

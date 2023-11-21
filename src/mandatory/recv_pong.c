@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:53:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 15:48:51 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:56:05 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static t_bool	check_echo_reply(char *pkt)
 		if (icmphdr_echo->type == ICMP_ECHO)
 			return (FALSE);
 		print_icmp_error(pkt);
-		conf->begin = ft_getnow_ms();
 		conf->stats.nb_err++;
 	}
 	else
@@ -66,7 +65,6 @@ void	recv_pong(void)
 		if (recv_echo_reply(pong_pkt))
 		{
 			print_icmp_timeout();
-			conf->begin = ft_getnow_ms();
 			conf->stats.nb_err++;
 			break ;
 		}
