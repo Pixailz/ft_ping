@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 10:05:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 02:53:56 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ t_bin	init_socket(void)
 	if (socket < 0)
 	{
 		if (socket == -1)
-			ft_perr("get_sock_echo: failed to get raw socket\n");
+			dprintf(2, "ft_ping: Lacking privilege for icmp packet\n");
 		if (socket == -2)
-			ft_perr("get_sock_echo: failed to set timeout on recv\n");
+			dprintf(2, "get_sock_echo: failed to get raw socket\n");
 		if (socket == -3)
-			ft_perr("get_sock_echo: failed to set IP_HDRINCL\n");
+			dprintf(2, "get_sock_echo: failed to set timeout on recv\n");
+		if (socket == -4)
+			dprintf(2, "get_sock_echo: failed to set IP_HDRINCL\n");
 		return (BIT_01);
 	}
 	conf->socket = socket;
