@@ -24,7 +24,30 @@ SRC_C_MANDATORY := cmd/help.c \
 				   stats/print.c \
 				   stats/rtt.c
 
-SRC_C_BONUS := main.c
+SRC_C_BONUS := cmd/help.c \
+			   cmd/usage.c \
+			   cmd/version.c \
+			   data/conf.c \
+			   data/exit.c \
+			   data/free.c \
+			   data/init.c \
+			   error.c \
+			   interrupt.c \
+			   main.c \
+			   packet/checksum.c \
+			   packet/icmp.c \
+			   packet/ip.c \
+			   packet/print.c \
+			   parsing/parse.c \
+			   parsing/post_parse.c \
+			   parsing/post_parse_cmd.c \
+			   parsing/post_parse_conf_1.c \
+			   process.c \
+			   recv_pong.c \
+			   run.c \
+			   send_ping.c \
+			   stats/print.c \
+			   stats/rtt.c
 
 ifeq ($(BONUS),1)
 TARGET				:= $(TARGET_BONUS)

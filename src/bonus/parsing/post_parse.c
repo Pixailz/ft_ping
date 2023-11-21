@@ -1,52 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   post_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
+/*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
 /*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping_bonus.h"
 
-t_bin	ft_ping(int ac, char **av)
+t_bin	post_parse(void)
 {
-	int	ret;
+	t_conf	*conf;
 
-	if (init_config())
-		return (2);
-	if (init_signal())
-		return (3);
-	ret = parse_opts(ac, av);
-	if (ret == 2)
-		return (4);
-	else if (ret == 1)
-		return (0); // cmd flags
-	if (init_socket())
-		return (5);
-	init_packet();
-	process_args();
-	ret = get_conf()->stats.nb_err != 0;
-	return (ret);
-}
+	if (post_parse_cmd_opt())
+		return (BIT_02);
+	conf = get_conf();
 
-int	main(int ac, char **av)
-{
-	int	ret;
-
-	if (ac > 1)
-	{
-		ret = ft_ping(ac, av);
-		free_data();
-	}
-	else
-	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
-		try_help_usage();
-		ret = 64;
-	}
-	return (ret);
+	post_parse_count(conf);
+	post_parse_timeout(conf);
+	post_parse_linger(conf);
+	post_parse_interval(conf);
+	post_parse_ttl(conf);
+	dprintf(DEBUG_FD, "conf->nb_packet %d\n", conf->nb_packet);
+	dprintf(DEBUG_FD, "conf->timeout   %d\n", conf->timeout);
+	dprintf(DEBUG_FD, "conf->linger    %d\n", conf->linger);
+	dprintf(DEBUG_FD, "conf->interval  %d\n", conf->interval);
+	dprintf(DEBUG_FD, "conf->ttl       %d\n", conf->ttl);
+	return (BIT_00);
 }

@@ -1,6 +1,6 @@
 # BASE
 TARGET				:= ft_ping
-TARGET_BONUS		:= $(TARGET)_bonus
+TARGET_BONUS		:= $(TARGET)
 CC					:= gcc
 CFLAGS				:= -Wall -Wextra
 VERSION				:= 1.2.0

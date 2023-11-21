@@ -1,52 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rtt.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
+/*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
 /*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping_bonus.h"
 
-t_bin	ft_ping(int ac, char **av)
+t_ts	ft_getnow_ms(void)
 {
-	int	ret;
+	struct timeval	tv;
 
-	if (init_config())
-		return (2);
-	if (init_signal())
-		return (3);
-	ret = parse_opts(ac, av);
-	if (ret == 2)
-		return (4);
-	else if (ret == 1)
-		return (0); // cmd flags
-	if (init_socket())
-		return (5);
-	init_packet();
-	process_args();
-	ret = get_conf()->stats.nb_err != 0;
-	return (ret);
+	if (gettimeofday(&tv, NULL) == -1)
+		return (0);
+	return (tv.tv_sec * A_SEC + tv.tv_usec);
 }
 
-int	main(int ac, char **av)
+void	update_stats_rtt(t_ts rtt, t_uint16 sequence)
 {
-	int	ret;
+	t_conf	*conf;
 
-	if (ac > 1)
+	conf = get_conf();
+	if (!sequence)
 	{
-		ret = ft_ping(ac, av);
-		free_data();
+		conf->stats.rtt_min = rtt;
+		conf->stats.rtt_avg = rtt;
+		conf->stats.rtt_max = rtt;
 	}
 	else
 	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
-		try_help_usage();
-		ret = 64;
+		if (rtt < conf->stats.rtt_min)
+			conf->stats.rtt_min = rtt;
+		if (rtt > conf->stats.rtt_max)
+			conf->stats.rtt_max = rtt;
+		conf->stats.rtt_avg += rtt;
 	}
-	return (ret);
 }

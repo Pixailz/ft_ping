@@ -1,52 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checksum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
+/*   Created: 2023/11/16 22:04:24 by brda-sil          #+#    #+#             */
 /*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping_bonus.h"
 
-t_bin	ft_ping(int ac, char **av)
+t_uint16	ft_checksum(char *data, t_size size)
 {
-	int	ret;
+	t_uint32	sum;
+	t_size		i;
 
-	if (init_config())
-		return (2);
-	if (init_signal())
-		return (3);
-	ret = parse_opts(ac, av);
-	if (ret == 2)
-		return (4);
-	else if (ret == 1)
-		return (0); // cmd flags
-	if (init_socket())
-		return (5);
-	init_packet();
-	process_args();
-	ret = get_conf()->stats.nb_err != 0;
-	return (ret);
-}
-
-int	main(int ac, char **av)
-{
-	int	ret;
-
-	if (ac > 1)
+	sum = 0;
+	i = 0;
+	while (i < size)
 	{
-		ret = ft_ping(ac, av);
-		free_data();
+		sum += ft_ntohs(*((t_uint16 *)(data + i)));
+		if (sum >> 16)
+			sum -= 0xffff;
+		i += 2;
 	}
-	else
+	if (size & 1)
 	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
-		try_help_usage();
-		ret = 64;
+		sum += ft_ntohs(*((t_uint16 *)(data + size - 1)));
+		if (sum > 0xffff)
+			sum -= 0xffff;
 	}
-	return (ret);
+	return (ft_htons(~sum));
 }

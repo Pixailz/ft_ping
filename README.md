@@ -29,6 +29,4 @@
 
 ## TODO
 
-1. Split mandatory / bonus
-   1. Mandatory contain bonuses
 1. Do more falgz

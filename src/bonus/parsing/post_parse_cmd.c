@@ -1,52 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   post_parse_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
+/*   Created: 2023/11/21 03:38:09 by brda-sil          #+#    #+#             */
 /*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping_bonus.h"
 
-t_bin	ft_ping(int ac, char **av)
+t_bool	exec_cmd_opt(t_opt opt)
 {
-	int	ret;
+	t_bool	ret;
 
-	if (init_config())
-		return (2);
-	if (init_signal())
-		return (3);
-	ret = parse_opts(ac, av);
-	if (ret == 2)
-		return (4);
-	else if (ret == 1)
-		return (0); // cmd flags
-	if (init_socket())
-		return (5);
-	init_packet();
-	process_args();
-	ret = get_conf()->stats.nb_err != 0;
+	ret = TRUE;
+	if (!ft_strcmp(opt.name, "help"))
+		help();
+	else if (!ft_strcmp(opt.name, "usage"))
+		usage();
+	else if (!ft_strcmp(opt.name, "version"))
+		version();
+	else
+		ret = FALSE;
 	return (ret);
 }
 
-int	main(int ac, char **av)
+t_bool	post_parse_cmd_opt(void)
 {
-	int	ret;
+	t_opts		*opts;
+	t_opt_order	*ptr;
 
-	if (ac > 1)
+	opts = ft_get_opts(0);
+	ptr = opts->opt_order;
+	while (ptr)
 	{
-		ret = ft_ping(ac, av);
-		free_data();
+		if (ptr->opt)
+			if (exec_cmd_opt(*ptr->opt))
+				return TRUE;
+		ptr = ptr->next;
 	}
-	else
-	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
-		try_help_usage();
-		ret = 64;
-	}
-	return (ret);
+	return (FALSE);
 }
