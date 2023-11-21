@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 02:59:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:51:37 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,35 @@ t_bin	init_config(void)
 		return (BIT_01);
 	}
 	return (BIT_00);
+}
+
+/*
+	1. get raw socket for ICMP
+	2. set timeout on recv
+	3. packet include iphdr
+ */
+int	ft_create_sock_echo(void)
+{
+	int				sock;
+	struct timeval	tv;
+	t_opt			*opt;
+
+	if (getuid())
+		return (-1);
+	sock = socket(PF_INET, SOCK_RAW, IPPROTO_ICMP);
+	if (sock == -1)
+		return (-2);
+	opt = ft_optget("linger");
+	tv.tv_usec = 0;
+	if (opt->is_present)
+		tv.tv_sec = ft_atoll(opt->value->value);
+	else
+		tv.tv_sec = FT_PING_LINGER;
+	if (setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) == -1)
+		return (-3);
+	if (setsockopt(sock, IPPROTO_IP, IP_HDRINCL, (int[1]){1}, sizeof(int)) == -1)
+		return (-4);
+	return (sock);
 }
 
 t_bin	init_socket(void)
@@ -59,17 +88,11 @@ t_bin	init_packet(void)
 	return (BIT_00);
 }
 
-static	void dummy(int sig)
-{
-	(void)sig;
-	dprintf(DEBUG_FD, "SIGALRM received\n");
-}
-
 t_bin	init_signal(void)
 {
-	if (signal(SIGALRM, dummy) == SIG_ERR)
+	if (signal(SIGALRM, SIG_IGN) == SIG_ERR)
 	{
-		dprintf(2, "signal: failed to set SIGALRM\n");
+		dprintf(2, "signal: failed to ingore SIGALRM\n");
 		return (BIT_01);
 	}
 	if (signal(SIGINT, &ft_ping_interrupt) == SIG_ERR)
