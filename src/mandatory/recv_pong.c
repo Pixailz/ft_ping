@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:53:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 15:02:26 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:48:51 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ static t_bool	check_echo_reply(char *pkt)
 		conf->stats.nb_err++;
 	}
 	else
+	{
+		conf->stats.nb_recv++;
 		print_pong_stats(pkt, icmphdr_echo);
-	conf->stats.nb_recv++;
+	}
 	return (TRUE);
 }
 

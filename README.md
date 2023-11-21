@@ -33,3 +33,4 @@
    1. CTRL-C
    1. _atexit()
 1. finished some opt
+1. fix ping on Wan
