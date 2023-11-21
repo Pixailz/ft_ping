@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 15:11:09 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:47:03 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
-
-t_bool	post_parse_cmd_opt(void)
-{
-	t_opts		*opts;
-	t_opt_order	*ptr;
-
-	opts = ft_get_opts(0);
-	ptr = opts->opt_order;
-	while (ptr)
-	{
-		if (ptr->opt)
-		{
-			ft_pdeb("cmd opt {%s} at %d\n", \
-									ptr->value, (ptr - opts->opt_order) + 1);
-			if (is_cmd_opt(*ptr->opt))
-				return TRUE;
-		}
-		ptr = ptr->next;
-	}
-	return (FALSE);
-}
 
 t_bin	parse_opts(int ac, char **av)
 {

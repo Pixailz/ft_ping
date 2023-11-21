@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:38:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 13:19:04 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:39:35 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ Options marked with (root only) are available only to superuser.\n\n\
 Report bugs to <pixailz1@gmail.com>.", 1);
 }
 
-t_bool	help(void)
+void	help(void)
 {
 	help_header();
 	help_part_1();
 	help_part_2();
 	help_footer();
-	return (TRUE);
 }

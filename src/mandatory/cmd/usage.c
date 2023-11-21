@@ -6,19 +6,18 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 06:02:30 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 21:18:46 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:39:48 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-t_bool	usage(void)
+void	usage(void)
 {
 	dprintf(1, "\
 Usage: %s [-v?V] [-c NUMBER] [-w N] [-W N] [--count=NUMBER] [--verbose]\n\
             [--timeout=N] [--linger=N] [--help] [--usage] [--version]\n\
             HOST ...\n", PROG_NAME);
-	return (TRUE);
 }
 
 void	try_help_usage(void)

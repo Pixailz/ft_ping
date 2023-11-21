@@ -29,8 +29,6 @@
 
 ## TODO
 
-1. handle more signal
-   1. _atexit()
-
 1. Split mandatory / bonus
    1. Mandatory contain bonuses
+1. Do more falgz
