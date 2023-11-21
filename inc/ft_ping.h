@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:03:40 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:31:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 
 # define PROG_NAME				"ft_ping"
 # define DEBUG					1
-# define VERSION				"1.2.0"
+# define VERSION				"1.2.5"
 
 // Identification of the iphdr
 # define FT_PING_IP_ID			420

@@ -30,7 +30,7 @@
 ## TODO
 
 1. handle more signal
-   1. CTRL-C
    1. _atexit()
-1. finished some opt
-1. fix ping on Wan
+
+1. Split mandatory / bonus
+   1. Mandatory contain bonuses

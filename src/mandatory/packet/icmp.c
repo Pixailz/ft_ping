@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 03:47:36 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/21 03:27:04 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_fill_hdr_icmp(t_icmphdr_echo *packet)
 
 	conf = get_conf();
 	packet->type = ICMP_ECHO;
-	packet->code = 1;
+	packet->code = 0;
 	packet->checksum = 0;
 	packet->identifier = ft_htons(conf->id_icmp);
 	packet->sequence = ft_htons(0);
