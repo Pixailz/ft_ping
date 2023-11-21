@@ -75,3 +75,7 @@ BONUS				:= 0
 endif
 endif
 endif
+
+ifeq ($(NO_ANSI), 1)
+CFLAGS				+= -DNO_ANSI=1
+endif
