@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 03:44:42 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:20:03 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,25 @@ void	post_parse_linger(t_conf *conf)
 
 void	post_parse_interval(t_conf *conf)
 {
-	t_opt	*opt;
+	t_opt	*interval;
+	t_opt	*flood;
 
-	opt = ft_optget("interval");
-	if (opt->is_present)
-		conf->interval = ft_atoll(opt->value->value);
-	else
-		conf->interval = FT_PING_INTERVAL;
-	if (conf->interval < 0)
+	flood = ft_optget("flood");
+	if (flood->is_present)
+	{
 		conf->interval = 0;
+		conf->flood = TRUE;
+	}
+	else
+	{
+		interval = ft_optget("interval");
+		if (interval->is_present)
+			conf->interval = ft_atoll(interval->value->value);
+		else
+			conf->interval = FT_PING_INTERVAL;
+		if (conf->interval < 0)
+			conf->interval = 0;
+	}
 }
 
 void	post_parse_ttl(t_conf *conf)

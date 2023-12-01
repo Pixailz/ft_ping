@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:17:16 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_bool	send_ping(const struct sockaddr *dst)
 	dprintf(DEBUG_FD, "Sended packet\n");
 	packet_print(conf->packet);
 	if (ft_getnow_ms() - conf->begin >= conf->timeout * A_SEC)
-		return TRUE;
+		return (TRUE);
 	alarm(conf->linger);
-	return FALSE;
+	return (FALSE);
 }

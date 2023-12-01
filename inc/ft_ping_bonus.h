@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:46:23 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:19:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ typedef struct s_conf
 	t_int32		linger;
 	t_int32		interval;
 	t_int32		ttl;
+	t_bool		flood;
 
 	t_ts		begin;
 
@@ -301,6 +302,8 @@ void		packet_print_raw(char *pkt, t_size size);
 t_bin		parse_opts(int ac, char **av);
 
 // parsing/post_parse.c
+t_bool		post_parse_incompatible_opt(void);
+t_bin		post_parse_base(void);
 t_bin		post_parse(void);
 
 // parsing/post_parse_cmd.c
@@ -321,7 +324,7 @@ void		process_args(void);
 void		recv_pong(void);
 
 // run.c
-void		ft_ping_run();
+void		ft_ping_run(void);
 
 // send_ping.c
 t_bool		send_ping(const struct sockaddr *dst);

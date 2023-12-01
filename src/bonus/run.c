@@ -6,13 +6,13 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:17:22 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping_bonus.h"
 
-void	ft_ping_run()
+void	ft_ping_run(void)
 {
 	t_conf			*conf;
 	t_icmphdr_echo	*pkt;

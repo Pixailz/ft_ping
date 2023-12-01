@@ -30,3 +30,6 @@
 ## TODO
 
 1. Do more falgz
+1. fix return value according to `/rsc/ping`
+   1. help
+   1. incompatible flag (`-f` and `-i`)

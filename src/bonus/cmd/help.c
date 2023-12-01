@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:38:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:25:48 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	help_part_2(void)
 {
 	ft_putendl_fd("\
  Options valid for --echo requests:\n\n\
+  -f, --flood                flood ping (root only)\n\
+\n\
   -?, --help                 give this help list\n\
       --usage                give a short usage message\n\
   -V, --version              print program version\n\

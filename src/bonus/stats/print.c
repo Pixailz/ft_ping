@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:25:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ void	print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo)
 	rtt = ft_getnow_ms() - conf->stats.send_ts;
 	update_stats_rtt(rtt, icmphdr_echo->sequence);
 	iphdr = (t_iphdr *)pkt;
-	printf(FMT_STATS_PONG, \
-		ft_htons(iphdr->total_len) - LEN_HDR_IP, \
-		ip_str, \
-		icmphdr_echo->sequence, \
-		iphdr->ttl, \
-		rtt / 1000, \
-		rtt % 1000);
+	if (!conf->flood)
+		printf(FMT_STATS_PONG, \
+			ft_htons(iphdr->total_len) - LEN_HDR_IP, \
+			ip_str, \
+			icmphdr_echo->sequence, \
+			iphdr->ttl, \
+			rtt / 1000, \
+			rtt % 1000);
 	dprintf(DEBUG_FD, "Received packet\n");
 	packet_print(pkt);
 }
