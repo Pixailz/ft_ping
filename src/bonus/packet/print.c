@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 21:20:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 15:39:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:02:59 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	packet_print_icmpdata(void *data)
 	dprintf(DEBUG_FD, "timestamp (ms) %ld\n", \
 											(tv->tv_sec * A_SEC) + tv->tv_usec);
 	dprintf(DEBUG_FD, "payload \n");
-	packet_print_raw(data + get_conf()->size, get_conf()->size);
+	packet_print_raw(data + PADDING, get_conf()->size);
 }
 
 void	packet_print(void *pkt)
@@ -75,9 +75,9 @@ void	packet_print_raw(char *pkt, t_size size)
 		i++;
 		if (i % 16 == 0)
 			dprintf(DEBUG_FD, "\n");
-		else if (i % 2 == 0)
+		else if (i % 4 == 0)
 			dprintf(DEBUG_FD, "   ");
-		else if (i % 1 == 0)
+		else if (i % 2 == 0)
 			dprintf(DEBUG_FD, " ");
 	}
 	dprintf(DEBUG_FD, "\n");
