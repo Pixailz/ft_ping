@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:38:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 13:24:13 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:55:42 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	help_part_1(void)
   -i, --interval=FLOAT       wait, FLOAT * 1, second between sending each packet\n\
   -n, --numeric              do not resolve host addresses\n\
       --ttl=N                specify N as time-to-live\n\
+  -T, --tos=NUM              set type of service (TOS) to NUM\n\
   -v, --verbose              verbose output\n\
   -w, --timeout=N            stop after N seconds\n\
   -W, --linger=N             number of seconds to wait for response\n\
@@ -41,6 +42,7 @@ void	help_part_2(void)
   -l, --preload=NUMBER       send NUMBER packets as fast as possible before\n\
                              falling into normal mode of behavior (root only)\n\
   -p, --pattern=PATTERN      fill ICMP packet with given pattern (hex)\n\
+  -q, --quiet                quiet output\n\
   -s, --size=NUMBER          send NUMBER data octets\n\
 \n\
   -?, --help                 give this help list\n\

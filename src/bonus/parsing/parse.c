@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 17:49:59 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:54:50 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_bin	parse_opts(int ac, char **av)
 	ft_optadd("version", 'V', OPT_FLAG);
 	ft_optadd("count", 'c', OPT_SINGLE);
 	ft_optadd("interval", 'i', OPT_SINGLE);
-	ft_optadd("ttl", 0, OPT_SINGLE);
 	ft_optadd("flood", 'f', OPT_FLAG);
 	ft_optadd("preload", 'l', OPT_SINGLE);
 	ft_optadd("numeric", 'n', OPT_FLAG);
