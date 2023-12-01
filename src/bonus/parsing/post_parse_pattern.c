@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 03:44:42 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 16:01:21 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:34:54 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_bin	post_parse_pattern_custom(t_conf *conf, char *str)
 		value = get_bytes(str[counter++]);
 		if (value == -1)
 			return (1);
-		conf->pattern[pattern_size++] = value | (tmp << 8);
+		conf->pattern[pattern_size++] = value | (tmp << 4);
 	}
 	conf->pattern_size = pattern_size;
 	return (0);
