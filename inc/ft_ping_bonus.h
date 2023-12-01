@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 17:07:46 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:38:44 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@
 // -i
 # define FT_PING_INTERVAL				1
 
-
 # define MAX_PACKET_SIZE				0xffff
 
 // MASK
@@ -209,6 +208,7 @@ typedef struct s_conf
 	char		pattern[FT_PING_MAX_ICMP_DATA_SIZE / 2];
 	t_int32		pattern_size;
 	char		data_icmp[FT_PING_MAX_ICMP_DATA_SIZE];
+	t_uint16	tos;
 
 	t_ts		begin;
 
@@ -319,6 +319,7 @@ void		post_parse_ttl(t_conf *conf);
 
 // parsing/post_parse_conf_2.c
 void		post_parse_preload(t_conf *conf);
+void		post_parse_tos(t_conf *conf);
 
 // parsing/post_parse_pattern.c
 t_bin		post_parse_pattern_custom(t_conf *conf, char *str);

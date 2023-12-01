@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 03:44:42 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 12:41:13 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:40:33 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,15 @@ void	post_parse_preload(t_conf *conf)
 		conf->preload = ft_atoll(opt->value->value);
 	else
 		conf->preload = 0;
+}
+
+void	post_parse_tos(t_conf *conf)
+{
+	t_opt	*opt;
+
+	opt = ft_optget("tos");
+	if (opt->is_present)
+		conf->tos = ft_atou(opt->value->value);
+	else
+		conf->tos = 0;
 }

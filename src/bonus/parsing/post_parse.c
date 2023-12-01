@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 16:17:28 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:40:59 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ t_bin	post_parse(void)
 	post_parse_interval(conf);
 	post_parse_ttl(conf);
 	post_parse_preload(conf);
+	post_parse_tos(conf);
 	return (BIT_00);
 }
