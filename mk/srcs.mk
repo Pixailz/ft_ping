@@ -35,6 +35,7 @@ SRC_C_BONUS := cmd/help.c \
 			   interrupt.c \
 			   main.c \
 			   packet/checksum.c \
+			   packet/get_packet_size.c \
 			   packet/icmp.c \
 			   packet/ip.c \
 			   packet/print.c \
@@ -43,6 +44,7 @@ SRC_C_BONUS := cmd/help.c \
 			   parsing/post_parse_cmd.c \
 			   parsing/post_parse_conf_1.c \
 			   parsing/post_parse_conf_2.c \
+			   parsing/post_parse_pattern.c \
 			   process.c \
 			   recv_pong.c \
 			   run.c \

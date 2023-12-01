@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:53:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 05:05:01 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:24:46 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_hdr_ip_fill(t_iphdr *packet)
 	packet->version = 4;
 	packet->ihl = LEN_HDR_IP / 4;
 	packet->tos = 0;
-	packet->total_len = ft_htons(PACKET_SIZE);
+	packet->total_len = ft_htons(get_packet_size());
 	packet->identification = ft_htons(FT_PING_IP_ID);
 	packet->fragment_off = ft_htons(get_fragment_off(IPHDR_F_DONT_FRAG, 0));
 	packet->ttl = conf->ttl;

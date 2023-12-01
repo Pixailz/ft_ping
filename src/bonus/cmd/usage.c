@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 06:02:30 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:16:51 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Usage: %s [-v?V] [-c NUMBER] [-w N] [-W N] [--count=NUMBER] [--verbose]\n\
 
 void	try_help_usage(void)
 {
-	dprintf(2, "Try '" PROG_NAME "--help' or '" PROG_NAME " --usage' " \
+	dprintf(2, "Try '" PROG_NAME " --help' or '" PROG_NAME " --usage' " \
 													"for more informations.\n");
 }
 

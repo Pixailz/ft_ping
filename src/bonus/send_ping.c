@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 12:17:16 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:24:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_bool	send_ping(const struct sockaddr *dst)
 	long	ret;
 
 	conf = get_conf();
-	ret = sendto(conf->socket, conf->packet, PACKET_SIZE, 0, dst, sizeof(*dst));
+	ret = sendto(conf->socket, conf->packet, get_packet_size(), 0, dst, \
+																sizeof(*dst));
 	if (ret == -1)
 		perror("sendto");
 	conf->stats.send_ts = ft_getnow_ms();

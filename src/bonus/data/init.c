@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:24:35 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	ft_create_sock_echo(void)
 		tv.tv_sec = FT_PING_LINGER;
 	if (setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) == -1)
 		return (-3);
-	if (setsockopt(sock, IPPROTO_IP, IP_HDRINCL, (int[1]){1}, sizeof(int)) == -1)
+	if (setsockopt(sock, IPPROTO_IP, IP_HDRINCL, (int [1]){1}, \
+															sizeof(int)) == -1)
 		return (-4);
 	return (sock);
 }
@@ -82,7 +83,7 @@ t_bin	init_packet(void)
 	t_conf	*conf;
 
 	conf = get_conf();
-	ft_memset(conf->packet, 0, PACKET_SIZE);
+	ft_memset(conf->packet, 0, get_packet_size());
 	ft_hdr_ip_fill((void *)conf->packet);
 	ft_hdr_icmp_echo_fill((void *)conf->packet + LEN_HDR_IP);
 	return (BIT_00);

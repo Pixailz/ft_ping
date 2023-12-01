@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:17:51 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:27:18 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	setup_target(char *value)
 	ft_hdr_ip_set_dst(conf->cur_target.ip);
 	ft_hdr_icmp_seq_inc();
 	reset_stats(&conf->stats);
-	printf(FMT_STATS_PING, value, ip_str, LEN_ICMP_ECHO_PAY + PADDING);
+	printf(FMT_STATS_PING, value, ip_str, FT_PING_ICMP_SIZE + PADDING);
 	if (ft_optget("verbose")->is_present)
 		printf(FMT_STATS_PING_VERBOSE, conf->id_icmp, conf->id_icmp);
 	printf("\n");

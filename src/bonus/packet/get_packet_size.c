@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_packet_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 14:07:36 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/12/01 15:20:55 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/12/01 15:26:54 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping_bonus.h"
 
-t_bin	ft_ping(int ac, char **av)
+t_size	get_packet_size(void)
 {
-	int	ret;
-
-	if (init_config())
-		return (BIT_01);
-	if (init_signal())
-		return (BIT_01);
-	ret = parse_opts(ac, av);
-	if (ret == BIT_02)
-		return (0);
-	else if (ret != 0)
-		return (ret);
-	if (init_socket())
-		return (BIT_01);
-	init_packet();
-	process_args();
-	ret = get_conf()->stats.nb_err != 0;
-	return (ret);
+	return (LEN_HDR_IP + get_icmp_size());
 }
 
-int	main(int ac, char **av)
+t_size	get_icmp_size(void)
 {
-	char	ret;
+	t_conf	*conf;
 
-	ret = ft_ping(ac, av);
-	free_data();
-	return (ret);
+	conf = get_conf();
+	return (LEN_HDR_ICMP_ECHO + PADDING + conf->size);
 }

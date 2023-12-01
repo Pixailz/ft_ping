@@ -6,14 +6,14 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 05:27:46 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:28:07 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PING_H
 # define FT_PING_H
 
-// # define NO_ANSI
+# define NO_ANSI
 # define PROG_NAME				"ft_ping"
 # define DEBUG					1
 # define VERSION				"1.2.0"
@@ -93,9 +93,9 @@
 
 # define LEN_HDR_ICMP_ECHO		8
 # define PADDING				8
-# define LEN_ICMP_ECHO_PAY		48
+# define FT_PING_ICMP_SIZE		48
 
-# define PACKET_SIZE LEN_HDR_IP + LEN_HDR_ICMP_ECHO + PADDING + LEN_ICMP_ECHO_PAY
+# define PACKET_SIZE LEN_HDR_IP + LEN_HDR_ICMP_ECHO + PADDING + FT_PING_ICMP_SIZE
 
 # define MAX_PACKET_SIZE		0x200
 

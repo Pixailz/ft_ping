@@ -6,12 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:53:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:46:43 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping_bonus.h"
-
 
 static t_bool	recv_echo_reply(char *pong_pkt)
 {
@@ -24,7 +23,7 @@ static t_bool	recv_echo_reply(char *pong_pkt)
 	ft_memset(&io, 0, sizeof(io));
 	ft_memset(&msg, 0, sizeof(msg));
 	io.iov_base = pong_pkt;
-	io.iov_len = PACKET_SIZE;
+	io.iov_len = get_packet_size();
 	msg.msg_iov = &io;
 	msg.msg_iovlen = 1;
 	ret = recvmsg(conf->socket, &msg, 0);
@@ -55,7 +54,7 @@ static t_bool	check_echo_reply(char *pkt)
 
 void	recv_pong(void)
 {
-	char			pong_pkt[PACKET_SIZE];
+	char			pong_pkt[MAX_PACKET_SIZE];
 	t_conf			*conf;
 
 	conf = get_conf();

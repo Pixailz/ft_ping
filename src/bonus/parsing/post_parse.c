@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 13:06:28 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:17:28 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_bool	post_parse_incompatible_opt(void)
 {
 	if (ft_optget("flood")->is_present && ft_optget("interval")->is_present)
 	{
-		dprintf(2, "./rsc/ping: -f and -i incompatible options");
+		dprintf(2, "%s: -f and -i incompatible options", \
+													ft_get_opts(0)->prog_name);
 		return (TRUE);
 	}
 	return (FALSE);
@@ -48,14 +49,16 @@ t_bin	post_parse(void)
 	t_conf	*conf;
 	t_bin	retv;
 
+	conf = get_conf();
 	if (post_parse_cmd_opt())
 		return (BIT_02);
+	if (post_parse_pattern(conf))
+		return (BIT_01);
+	if (post_parse_incompatible_opt())
+		return (BIT_01);
 	retv = post_parse_base();
 	if (retv)
 		return (retv);
-	if (post_parse_incompatible_opt())
-		return (BIT_03);
-	conf = get_conf();
 	post_parse_count(conf);
 	post_parse_timeout(conf);
 	post_parse_linger(conf);
