@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:38:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 12:36:21 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:07:24 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	help_part_1(void)
  Options valid for all request types:\n\n\
   -c, --count=NUMBER         stop after sending NUMBER packets\n\
   -i, --interval=FLOAT       wait, FLOAT * 1, second between sending each packet\n\
+  -n, --numeric              do not resolve host addresses\n\
       --ttl=N                specify N as time-to-live\n\
   -v, --verbose              verbose output\n\
   -w, --timeout=N            stop after N seconds\n\

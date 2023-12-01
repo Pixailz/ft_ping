@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 12:30:49 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:06:28 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ t_bin	post_parse(void)
 	t_conf	*conf;
 	t_bin	retv;
 
+	if (post_parse_cmd_opt())
+		return (BIT_02);
 	retv = post_parse_base();
 	if (retv)
 		return (retv);
-	if (post_parse_cmd_opt())
-		return (BIT_02);
 	if (post_parse_incompatible_opt())
 		return (BIT_03);
 	conf = get_conf();
@@ -62,10 +62,5 @@ t_bin	post_parse(void)
 	post_parse_interval(conf);
 	post_parse_ttl(conf);
 	post_parse_preload(conf);
-	dprintf(DEBUG_FD, "conf->nb_packet %d\n", conf->nb_packet);
-	dprintf(DEBUG_FD, "conf->timeout   %d\n", conf->timeout);
-	dprintf(DEBUG_FD, "conf->linger    %d\n", conf->linger);
-	dprintf(DEBUG_FD, "conf->interval  %d\n", conf->interval);
-	dprintf(DEBUG_FD, "conf->ttl       %d\n", conf->ttl);
 	return (BIT_00);
 }
