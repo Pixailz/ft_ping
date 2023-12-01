@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 12:09:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:30:49 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_bin	post_parse(void)
 	post_parse_linger(conf);
 	post_parse_interval(conf);
 	post_parse_ttl(conf);
+	post_parse_preload(conf);
 	dprintf(DEBUG_FD, "conf->nb_packet %d\n", conf->nb_packet);
 	dprintf(DEBUG_FD, "conf->timeout   %d\n", conf->timeout);
 	dprintf(DEBUG_FD, "conf->linger    %d\n", conf->linger);

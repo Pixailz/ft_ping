@@ -9,6 +9,11 @@
 
 ## USEFULL COMMAND
 
+### STATS
+
+> to make stats about our ping
+`sudo ./rsc/ping -f 127.0.0.1 & sleep 5s; sudo kill -s SIGINT $!`
+
 ### DEBUG_FD
 
 `sudo bash -c "./ft_ping 127.0.0.1 DEBUG_FD>exec.log"`

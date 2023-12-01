@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:43:23 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ static void	setup_target(char *value)
 
 void	process_args(void)
 {
-	t_opts		*opts;
 	t_opt_value	*target;
 	t_conf		*conf;
 
 	conf = get_conf();
-	opts = ft_get_opts(0);
-	target = opts->value;
+	target = ft_get_opts(0)->value;
 	conf->begin = ft_getnow_ms();
 	while (target)
 	{
@@ -78,6 +76,11 @@ void	process_args(void)
 			ft_ping_run();
 			if (ft_getnow_ms() - conf->begin >= conf->timeout * A_SEC)
 				break ;
+			if (conf->preload)
+			{
+				conf->preload--;
+				continue ;
+			}
 			if (conf->stats.nb_trans != conf->nb_packet)
 				usleep(conf->interval * A_SEC);
 		}

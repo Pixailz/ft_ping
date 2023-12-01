@@ -6,12 +6,12 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 12:19:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:30:31 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PING_H
-# define FT_PING_H
+#ifndef FT_PING_BONUS_H
+# define FT_PING_BONUS_H
 
 // # define NO_ANSI
 # define PROG_NAME				"ft_ping"
@@ -95,7 +95,8 @@
 # define PADDING				8
 # define LEN_ICMP_ECHO_PAY		48
 
-# define PACKET_SIZE LEN_HDR_IP + LEN_HDR_ICMP_ECHO + PADDING + LEN_ICMP_ECHO_PAY
+# define PACKET_SIZE LEN_HDR_IP + LEN_HDR_ICMP_ECHO + PADDING + \
+															LEN_ICMP_ECHO_PAY
 
 # define MAX_PACKET_SIZE		0x200
 
@@ -116,7 +117,6 @@ typedef suseconds_t				t_ts;
 typedef struct __attribute__((__packed__)) s_iphdr
 {
 # if __BYTE_ORDER == __LITTLE_ENDIAN
-
 	t_uint8		ihl:4;
 	t_uint8		version:4;
 
@@ -213,6 +213,7 @@ typedef struct s_conf
 	t_int32		interval;
 	t_int32		ttl;
 	t_bool		flood;
+	t_int32		preload;
 
 	t_ts		begin;
 
@@ -317,6 +318,9 @@ void		post_parse_linger(t_conf *conf);
 void		post_parse_interval(t_conf *conf);
 void		post_parse_ttl(t_conf *conf);
 
+// parsing/post_parse_conf_2.c
+void		post_parse_preload(t_conf *conf);
+
 // process.c
 void		process_args(void);
 
@@ -341,4 +345,4 @@ void		update_stats_rtt(t_ts rtt, t_uint16 sequence);
 
 /* ########################################################################## */
 
-#endif //FT_PING_H
+#endif //FT_PING_BONUS_H
