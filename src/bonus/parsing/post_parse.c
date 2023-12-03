@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 18:07:17 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:13:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_bool	post_parse_incompatible_opt(void)
 {
 	if (ft_optget("flood")->is_present && ft_optget("interval")->is_present)
 	{
-		dprintf(2, "%s: -f and -i incompatible options\n", \
+		ft_dprintf(2, "%s: -f and -i incompatible options\n", \
 													ft_get_opts(0)->prog_name);
 		return (TRUE);
 	}
@@ -37,7 +37,7 @@ t_bin	post_parse_base(void)
 	}
 	if (!opts->value)
 	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
+		ft_dprintf(2, PROG_NAME ": missing host operand\n");
 		try_help_usage();
 		retv = BIT_07;
 	}

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 06:03:14 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:10:30 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	version(void)
 {
-	printf(PROG_NAME " (ft_libft) %s\n\nWritten by Pixailz\n", VERSION);
+	ft_printf(PROG_NAME " (ft_libft) %s\n\nWritten by Pixailz\n", VERSION);
 }

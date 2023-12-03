@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:53:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:54:22 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:15:36 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	ft_hdr_ip_fill(t_iphdr *packet)
 	packet->options = ft_htons(0);
 	packet->padding = 0;
 # endif // FT_PING_USE_IP_OPTS == 1
-	dprintf(DEBUG_FD, "iphdr: packet len %ld\n", sizeof(*packet));
+	ft_pdeb("iphdr: packet len %d\n", sizeof(*packet));
 }

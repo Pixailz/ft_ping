@@ -321,7 +321,7 @@ void		process_args(void);
 void		recv_pong(void);
 
 // run.c
-void		ft_ping_run();
+void		ft_ping_run(void);
 
 // send_ping.c
 t_bool		send_ping(const struct sockaddr *dst);

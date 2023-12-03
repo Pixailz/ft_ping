@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:57:11 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:14:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bin	ft_ping(int ac, char **av)
 	if (ret == 2)
 		return (4);
 	else if (ret == 1)
-		return (0); // cmd flags
+		return (0);
 	if (init_socket())
 		return (5);
 	init_packet();
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		dprintf(2, PROG_NAME ": missing host operand\n");
+		ft_dprintf(2, PROG_NAME ": missing host operand\n");
 		try_help_usage();
 		ret = 64;
 	}

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 03:44:42 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 18:34:54 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:13:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	int	get_bytes(char c)
 		return (ft_atoi_base(tmp, BUHEX));
 	else
 	{
-		dprintf(2, "%s: error in pattern near %c\n", ft_get_opts(0)->prog_name, \
+		ft_dprintf(2, "%s: error in pattern near %c\n", ft_get_opts(0)->prog_name, \
 																			c);
 		return (-1);
 	}
@@ -104,8 +104,8 @@ int	post_parse_pattern(t_conf *conf)
 		conf->size = FT_PING_ICMP_SIZE;
 	if (conf->size > FT_PING_MAX_ICMP_DATA_SIZE)
 	{
-		dprintf(2, "%s: option value too big: %d\n", ft_get_opts(0)->prog_name, \
-																	conf->size);
+		ft_dprintf(2, "%s: option value too big: %d\n", \
+										ft_get_opts(0)->prog_name, conf->size);
 		return (1);
 	}
 	opt = ft_optget("pattern");

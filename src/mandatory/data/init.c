@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:51:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:15:04 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ t_bin	init_socket(void)
 	if (socket < 0)
 	{
 		if (socket == -1)
-			dprintf(2, "ft_ping: Lacking privilege for icmp packet\n");
+			ft_dprintf(2, "ft_ping: Lacking privilege for icmp packet\n");
 		if (socket == -2)
-			dprintf(2, "get_sock_echo: failed to get raw socket\n");
+			ft_dprintf(2, "get_sock_echo: failed to get raw socket\n");
 		if (socket == -3)
-			dprintf(2, "get_sock_echo: failed to set timeout on recv\n");
+			ft_dprintf(2, "get_sock_echo: failed to set timeout on recv\n");
 		if (socket == -4)
-			dprintf(2, "get_sock_echo: failed to set IP_HDRINCL\n");
+			ft_dprintf(2, "get_sock_echo: failed to set IP_HDRINCL\n");
 		return (BIT_01);
 	}
 	conf->socket = socket;
@@ -92,12 +92,12 @@ t_bin	init_signal(void)
 {
 	if (signal(SIGALRM, SIG_IGN) == SIG_ERR)
 	{
-		dprintf(2, "signal: failed to ingore SIGALRM\n");
+		ft_dprintf(2, "signal: failed to ingore SIGALRM\n");
 		return (BIT_01);
 	}
 	if (signal(SIGINT, &ft_ping_interrupt) == SIG_ERR)
 	{
-		dprintf(2, "signal: failed to set SIGTINT\n");
+		ft_dprintf(2, "signal: failed to set SIGTINT\n");
 		return (BIT_02);
 	}
 	return (BIT_00);

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 17:19:28 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:30:38 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_fill_hdr_icmp(t_icmphdr_echo *packet)
 	packet->identifier = ft_htons(conf->id_icmp);
 	packet->sequence = ft_htons(0);
 	packet->checksum = ft_checksum((void *)packet, get_icmp_size());
-	dprintf(DEBUG_FD, "icmphdr_echo: checksum 0x%04x\n", packet->checksum);
+	ft_pdeb("icmphdr_echo: checksum %#06x\n", packet->checksum);
 	dprintf(DEBUG_FD, "icmphdr_echo: packet len %ld\n", sizeof(*packet));
 }
 
@@ -45,7 +45,7 @@ void	ft_hdr_icmp_echo_fill(void *packet)
 	t_conf	*conf;
 
 	if (gettimeofday(packet + LEN_HDR_ICMP_ECHO, NULL) == -1)
-		dprintf(2, "Failed to get time of day\n");
+		ft_dprintf(2, "Failed to get time of day\n");
 	conf = get_conf();
 	ft_memcpy(packet + LEN_HDR_ICMP_ECHO + PADDING, \
 												conf->data_icmp, conf->size);

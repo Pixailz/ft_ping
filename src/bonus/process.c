@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 17:08:45 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:11:17 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_bool	get_ip(t_conf *conf, char *value)
 		conf->cur_target.ip = ip_tmp;
 		return (FALSE);
 	}
-	dprintf(2, "%s: unknown host\n", ft_get_opts(0)->prog_name);
+	ft_perr("%s: unknown host\n", ft_get_opts(0)->prog_name);
 	return (TRUE);
 }
 
@@ -75,12 +75,12 @@ static t_bool	setup_target(t_conf *conf, char *value)
 	ft_hdr_icmp_seq_inc();
 	reset_stats(&conf->stats);
 	if (conf->custom_size)
-		printf(FMT_STATS_PING, value, ip_str, conf->size);
+		ft_printf(FMT_STATS_PING, value, ip_str, conf->size);
 	else
-		printf(FMT_STATS_PING, value, ip_str, conf->size + PADDING);
+		ft_printf(FMT_STATS_PING, value, ip_str, conf->size + PADDING);
 	if (ft_optget("verbose")->is_present)
-		printf(FMT_STATS_PING_VERBOSE, conf->id_icmp, conf->id_icmp);
-	printf("\n");
+		ft_printf(FMT_STATS_PING_VERBOSE, conf->id_icmp, conf->id_icmp);
+	ft_printf("\n");
 	conf->current_preload = conf->preload;
 	return (FALSE);
 }

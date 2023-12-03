@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 13:27:18 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:23:53 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_fill_hdr_icmp(t_icmphdr_echo *packet)
 	packet->sequence = ft_htons(0);
 	packet->checksum = ft_checksum((void *)packet, \
 						LEN_HDR_ICMP_ECHO + FT_PING_ICMP_SIZE + PADDING);
-	dprintf(DEBUG_FD, "icmphdr_echo: checksum 0x%04x\n", packet->checksum);
+	ft_pdeb("icmphdr_echo: checksum 0x%04x\n", packet->checksum);
 	dprintf(DEBUG_FD, "icmphdr_echo: packet len %ld\n", sizeof(*packet));
 }
 
@@ -53,7 +53,7 @@ void	ft_hdr_icmp_seq_inc(void)
 void	ft_hdr_icmp_echo_fill(void *packet)
 {
 	if (gettimeofday(packet + LEN_HDR_ICMP_ECHO, NULL) == -1)
-		dprintf(2, "Failed to get time of day\n");
+		ft_dprintf(2, "Failed to get time of day\n");
 	fill_random_data(packet + LEN_HDR_ICMP_ECHO + PADDING, FT_PING_ICMP_SIZE);
 	ft_fill_hdr_icmp(packet);
 }

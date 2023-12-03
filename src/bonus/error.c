@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:08:23 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 16:17:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:10:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn)
 	else
 		err_str = FT_NULL;
 	ft_ntop(AF_INET, conf->cur_target.ip, ip_str);
-	printf(FMT_STATS_PONG_ERR, \
+	ft_printf(FMT_STATS_PONG_ERR, \
 		ft_htons(tot_len) - LEN_HDR_IP, \
 		conf->cur_target.value, ip_str, seq, err_str);
 }
@@ -38,7 +38,7 @@ void	print_icmp_timeout(void)
 
 	conf = get_conf();
 	ft_ntop(AF_INET, conf->cur_target.ip, ip_str);
-	printf(FMT_STATS_PONG_TIMEOUT, conf->cur_target.value, ip_str, \
+	ft_printf(FMT_STATS_PONG_TIMEOUT, conf->cur_target.value, ip_str, \
 																conf->sequence);
 }
 

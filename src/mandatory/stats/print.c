@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 13:46:04 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:24:53 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo)
 		iphdr->ttl, \
 		rtt / 1000, \
 		rtt % 1000);
-	dprintf(DEBUG_FD, "Received packet\n");
+	ft_dprintf(DEBUG_FD, "Received packet\n");
 	packet_print(pkt);
 }
 
@@ -68,12 +68,12 @@ void	print_stats(void)
 
 	conf = get_conf();
 	sts = conf->stats;
-	dprintf(DEBUG_FD, "nb_err %d\n", sts.nb_err);
+	ft_pdeb("nb_err %d\n", sts.nb_err);
 	if (sts.nb_trans)
 		pkt_loss = 100 - ((sts.nb_recv * 100) / sts.nb_trans);
 	else
 		pkt_loss = 100;
-	printf(FMT_STATS_TRANS, \
+	ft_printf(FMT_STATS_TRANS, \
 		conf->cur_target.value, \
 		sts.nb_trans, sts.nb_recv, get_color_pkt_loss(pkt_loss), pkt_loss);
 	if (pkt_loss != 100)

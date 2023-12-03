@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 17:38:44 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:08:57 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@
 
 # include <stdio.h>
 /*
- printf()
- dprintf()
+ sprintf()
  */
 
 # include <arpa/inet.h>

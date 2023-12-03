@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 06:02:30 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 15:16:51 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:26:29 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	usage(void)
 {
-	dprintf(1, "\
+	ft_printf("\
 Usage: %s [-v?V] [-c NUMBER] [-w N] [-W N] [--count=NUMBER] [--verbose]\n\
             [--timeout=N] [--linger=N] [--help] [--usage] [--version]\n\
             HOST ...\n", PROG_NAME);
@@ -22,7 +22,7 @@ Usage: %s [-v?V] [-c NUMBER] [-w N] [-W N] [--count=NUMBER] [--verbose]\n\
 
 void	try_help_usage(void)
 {
-	dprintf(2, "Try '" PROG_NAME " --help' or '" PROG_NAME " --usage' " \
+	ft_dprintf(2, "Try '" PROG_NAME " --help' or '" PROG_NAME " --usage' " \
 													"for more informations.\n");
 }
 
@@ -32,10 +32,10 @@ void	unknown_arg(void)
 
 	opts = ft_get_opts(0);
 	if (opts->err_param_name)
-		dprintf(2, "%s: unrecognized option '%s'\n", \
+		ft_dprintf(2, "%s: unrecognized option '%s'\n", \
 										opts->av[0], opts->err_param_name);
 	else if (opts->err_param_short)
-		dprintf(2, "%s: invalid option -- '%c'\n", \
+		ft_dprintf(2, "%s: invalid option -- '%c'\n", \
 										opts->av[0], opts->err_param_short);
 	try_help_usage();
 }

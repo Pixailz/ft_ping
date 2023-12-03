@@ -6,13 +6,13 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 13:51:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/03 16:25:30 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-void	ft_ping_run()
+void	ft_ping_run(void)
 {
 	t_conf			*conf;
 	t_icmphdr_echo	*pkt;
@@ -23,5 +23,5 @@ void	ft_ping_run()
 	recv_pong();
 	ft_hdr_icmp_seq_inc();
 	pkt = (t_icmphdr_echo *)(conf->packet + LEN_HDR_IP);
-	dprintf(DEBUG_FD, "icmphdr_echo (inc): checksum 0x%04x\n", pkt->checksum);
+	dprintf(DEBUG_FD, "icmphdr_echo (inc): checksum %#06x\n", pkt->checksum);
 }
