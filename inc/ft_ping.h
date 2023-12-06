@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/01 13:28:07 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:28:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "libft_print.h"
 # include "libft_parsing.h"
 # include "libft_network/ipv4.h"
+# include "libft_random.h"
 
 # include <errno.h>
 /*
@@ -212,6 +213,7 @@ typedef struct s_conf
 	t_int32		linger;
 	t_int32		interval;
 	t_int32		ttl;
+	char		data_icmp[FT_PING_ICMP_SIZE];
 
 	t_ts		begin;
 
@@ -301,6 +303,7 @@ void		packet_print_raw(char *pkt, t_size size);
 t_bin		parse_opts(int ac, char **av);
 
 // parsing/post_parse.c
+t_bin		post_parse_base(void);
 t_bin		post_parse(void);
 
 // parsing/post_parse_cmd.c
@@ -313,6 +316,10 @@ void		post_parse_timeout(t_conf *conf);
 void		post_parse_linger(t_conf *conf);
 void		post_parse_interval(t_conf *conf);
 void		post_parse_ttl(t_conf *conf);
+
+// parsing/post_parse_pattern.c
+void		post_parse_icmp_data_random(t_conf *conf);
+int			post_parse_pattern(t_conf *conf);
 
 // process.c
 void		process_args(void);

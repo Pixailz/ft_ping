@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:30:38 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:18:07 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	ft_fill_hdr_icmp(t_icmphdr_echo *packet)
 
 void	ft_hdr_icmp_seq_inc(void)
 {
-	t_conf					*conf;
-	static t_icmphdr_echo	*pkt = FT_NULL;
+	t_conf			*conf;
+	t_icmphdr_echo	*pkt;
 
 	conf = get_conf();
 	pkt = (t_icmphdr_echo *)(conf->packet + LEN_HDR_IP);

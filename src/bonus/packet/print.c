@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 21:20:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:32:02 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:38:51 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,6 @@ void	packet_print_icmphdr(t_icmphdr_echo *pkt)
 
 void	packet_print_icmpdata(void *data)
 {
-	struct timeval	*tv;
-
-	tv = (struct timeval *)(data);
-	dprintf(DEBUG_FD, "timestamp (ms) %ld\n", \
-											(tv->tv_sec * A_SEC) + tv->tv_usec);
 	dprintf(DEBUG_FD, "payload \n");
 	packet_print_raw(data + PADDING, get_conf()->size);
 }
