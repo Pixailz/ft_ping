@@ -1,10 +1,10 @@
 # ft_ping
 
+Clone of ping (GNU inetutils 2.0)
+> [!NOTE]
+> You can get any version [here](https://ftp.wayne.edu/gnu/inetutils/)
+
 https://github.com/Pixailz/ft_ping/assets/35565530/4702e5b1-2e30-40eb-a868-3a19350b0745
-
-## TODO
-
-1. A little more falgz
 
 ## Usefull links
 
@@ -15,9 +15,15 @@ https://github.com/Pixailz/ft_ping/assets/35565530/4702e5b1-2e30-40eb-a868-3a193
 
 ## Usage
 
+> [!WARNING]
+> This repo use submodules, make sure you fetch those all
+
 ```
-bash$ make
-bash$ ./ft_ping --help
+bash:~$ git clone git@github.com:Pixailz/ft_ping --recurse-submodules
+bash:~$ cd ft_ping
+bash:~/ft_ping$ make bonus
+[...]
+bash:~/ft_ping$ ./ft_ping --help
 Usage: ft_ping [OPTION...] HOST ...
 Send ICMP ECHO_REQUEST packets to network hosts.
 
@@ -51,15 +57,17 @@ for any corresponding short options.
 Options marked with (root only) are available only to superuser.
 
 Report bugs to <pixailz1@gmail.com>.
-bash$ sudo ./ft_ping 42angouleme.com -c1
+bash$ sudo ./ft_ping 42angouleme.fr -c1
 ```
 
 ## Usefull command
 
 ### STATS
 
-> to make stats about our ping
+to make stats about our ping
 `sudo ./rsc/ping -f 127.0.0.1 & sleep 5s; sudo kill -s SIGINT $!`
+   > [!CAUTION]
+   > This will **flood** icmp packet as soon as the process received the reply
 
 ### DEBUG_FD
 
@@ -78,3 +86,7 @@ bash$ sudo ./ft_ping 42angouleme.com -c1
     --track-fds=yes \
     ./ft_ping 127.0.0.1 127.0.0.2 127.0.0.3 DEBUG_FD>exec.log"
    ```
+
+## TODO
+
+1. A little more falgz
