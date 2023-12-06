@@ -17,6 +17,7 @@ SRC_C_MANDATORY := cmd/help.c \
 				   parsing/post_parse.c \
 				   parsing/post_parse_cmd.c \
 				   parsing/post_parse_conf_1.c \
+				   parsing/post_parse_pattern.c \
 				   process.c \
 				   recv_pong.c \
 				   run.c \

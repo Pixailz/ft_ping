@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 21:20:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:25:53 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:38:50 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,8 @@ void	packet_print_icmphdr(t_icmphdr_echo *pkt)
 
 void	packet_print_icmpdata(void *data)
 {
-	struct timeval	*tv;
-	char			payload[FT_PING_ICMP_SIZE];
-
-	tv = (struct timeval *)(data);
-	ft_memcpy(payload, data + PADDING, FT_PING_ICMP_SIZE);
-	payload[FT_PING_ICMP_SIZE] = 0;
-	dprintf(DEBUG_FD, "timestamp (ms) %ld\n", \
-											(tv->tv_sec * A_SEC) + tv->tv_usec);
-	ft_dprintf(DEBUG_FD, "payload \n");
-	packet_print_raw(payload, FT_PING_ICMP_SIZE);
+	dprintf(DEBUG_FD, "payload \n");
+	packet_print_raw(data + PADDING, FT_PING_ICMP_SIZE);
 }
 
 void	packet_print(void *pkt)
@@ -74,13 +66,13 @@ void	packet_print_raw(char *pkt, t_size size)
 	i = 0;
 	while (i < size)
 	{
-		ft_dprintf(DEBUG_FD, "%02X", (unsigned char)pkt[i]);
+		ft_dprintf(DEBUG_FD, "%02x", (unsigned char)pkt[i]);
 		i++;
 		if (i % 16 == 0)
 			ft_dprintf(DEBUG_FD, "\n");
-		else if (i % 2 == 0)
+		else if (i % 4 == 0)
 			ft_dprintf(DEBUG_FD, "   ");
-		else if (i % 1 == 0)
+		else if (i % 2 == 0)
 			ft_dprintf(DEBUG_FD, " ");
 	}
 	ft_dprintf(DEBUG_FD, "\n");

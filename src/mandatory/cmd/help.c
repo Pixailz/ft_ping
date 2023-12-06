@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:38:28 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:39:35 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:34:36 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	help_part_1(void)
  Options valid for all request types:\n\n\
   -c, --count=NUMBER         stop after sending NUMBER packets\n\
   -i, --interval=FLOAT       wait, FLOAT * 1, second between sending each packet\n\
-      --ttl=N                specify N as time-to-live\n\
   -v, --verbose              verbose output\n\
   -w, --timeout=N            stop after N seconds\n\
   -W, --linger=N             number of seconds to wait for response\n\

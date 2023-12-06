@@ -6,12 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:53:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 03:56:05 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:23:28 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
-
 
 static t_bool	recv_echo_reply(char *pong_pkt)
 {

@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   post_parse_pattern.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/29 21:17:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/06 12:33:47 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/11/21 03:44:42 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/12/06 12:10:03 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-t_bin	ft_ping(int ac, char **av)
+void	post_parse_icmp_data_random(t_conf *conf)
 {
-	int	ret;
+	int	counter;
 
-	if (init_config())
-		return (BIT_01);
-	if (init_signal())
-		return (BIT_01);
-	ret = parse_opts(ac, av);
-	if (ret == BIT_02)
-		return (0);
-	else if (ret != 0)
-		return (ret);
-	if (init_socket())
-		return (BIT_01);
-	init_packet();
-	process_args();
-	ret = get_conf()->stats.nb_err != 0;
-	return (ret);
+	counter = 0;
+	while (counter < FT_PING_ICMP_SIZE)
+		conf->data_icmp[counter++] = ft_randchar();
 }
 
-int	main(int ac, char **av)
+int	post_parse_pattern(t_conf *conf)
 {
-	char	ret;
-
-	ret = ft_ping(ac, av);
-	free_data();
-	return (ret);
+	ft_bzero(conf->data_icmp, FT_PING_ICMP_SIZE);
+	post_parse_icmp_data_random(conf);
+	return (0);
 }

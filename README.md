@@ -5,8 +5,6 @@ https://github.com/Pixailz/ft_ping/assets/35565530/4702e5b1-2e30-40eb-a868-3a193
 ## TODO
 
 1. A little more falgz
-1. lighten the buffer or move it oustide of the config structure
-1. copy bonus to mandatory and clean mandatory from bonus, update
 
 ## Usefull links
 

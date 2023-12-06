@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:15:04 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:27:00 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	ft_create_sock_echo(void)
 		tv.tv_sec = FT_PING_LINGER;
 	if (setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) == -1)
 		return (-3);
-	if (setsockopt(sock, IPPROTO_IP, IP_HDRINCL, (int[1]){1}, sizeof(int)) == -1)
+	if (setsockopt(sock, IPPROTO_IP, IP_HDRINCL, (int [1]){1}, \
+															sizeof(int)) == -1)
 		return (-4);
 	return (sock);
 }

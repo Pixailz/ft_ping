@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:23:53 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:19:40 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,15 @@ void	ft_fill_hdr_icmp(t_icmphdr_echo *packet)
 	dprintf(DEBUG_FD, "icmphdr_echo: packet len %ld\n", sizeof(*packet));
 }
 
-static void	fill_random_data(void *buffer, t_size size)
-{
-	ft_memset(buffer, 42, size);
-}
-
 void	ft_hdr_icmp_seq_inc(void)
 {
-	static t_conf			*conf = FT_NULL;
-	static t_icmphdr_echo	*pkt = FT_NULL;
+	t_conf			*conf;
+	t_icmphdr_echo	*pkt;
 
-	if (!conf)
-	{
-		conf = get_conf();
-		pkt = (t_icmphdr_echo *)(conf->packet + LEN_HDR_IP);
-	}
+	conf = get_conf();
+	pkt = (t_icmphdr_echo *)(conf->packet + LEN_HDR_IP);
 	conf->sequence++;
-	pkt->sequence = conf->sequence;
+	pkt->sequence = ft_htons(conf->sequence);
 	pkt->checksum = 0;
 	pkt->checksum = ft_checksum((void *)pkt, \
 						LEN_HDR_ICMP_ECHO + FT_PING_ICMP_SIZE + PADDING);
@@ -52,8 +44,12 @@ void	ft_hdr_icmp_seq_inc(void)
 
 void	ft_hdr_icmp_echo_fill(void *packet)
 {
+	t_conf	*conf;
+
 	if (gettimeofday(packet + LEN_HDR_ICMP_ECHO, NULL) == -1)
 		ft_dprintf(2, "Failed to get time of day\n");
-	fill_random_data(packet + LEN_HDR_ICMP_ECHO + PADDING, FT_PING_ICMP_SIZE);
+	conf = get_conf();
+	ft_memcpy(packet + LEN_HDR_ICMP_ECHO + PADDING, \
+											conf->data_icmp, FT_PING_ICMP_SIZE);
 	ft_fill_hdr_icmp(packet);
 }
