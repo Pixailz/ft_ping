@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:08:57 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:20:52 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,9 +204,9 @@ typedef struct s_conf
 	t_int32		preload;
 	t_bool		custom_size;
 	t_int32		size;
-	char		pattern[FT_PING_MAX_ICMP_DATA_SIZE / 2];
+	char		*pattern;
 	t_int32		pattern_size;
-	char		data_icmp[FT_PING_MAX_ICMP_DATA_SIZE];
+	char		*data_icmp;
 	t_uint16	tos;
 
 	t_ts		begin;

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:44:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:28:58 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	free_conf(void)
 	conf = get_conf();
 	if (conf->socket >= 0)
 		close(conf->socket);
+	free(conf->pattern);
+	free(conf->data_icmp);
 	free(conf);
 }
 

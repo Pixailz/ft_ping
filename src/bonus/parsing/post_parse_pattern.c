@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 03:44:42 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:13:25 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:28:58 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ int	post_parse_pattern(t_conf *conf)
 		return (1);
 	}
 	opt = ft_optget("pattern");
-	ft_bzero(conf->data_icmp, FT_PING_MAX_ICMP_DATA_SIZE);
+	conf->data_icmp = ft_calloc(conf->size + 1, sizeof(char));
 	if (opt->is_present)
 	{
-		ft_bzero(conf->pattern, FT_PING_MAX_ICMP_DATA_SIZE / 2);
+		conf->pattern = ft_calloc(conf->size + 1, sizeof(char));
 		if (post_parse_pattern_custom(conf, opt->value->value))
 			return (1);
 		post_parse_icmp_data_custom(conf);
