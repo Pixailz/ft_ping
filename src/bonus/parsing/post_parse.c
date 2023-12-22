@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 01:01:15 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:13:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/22 01:03:07 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,20 @@ t_bool	post_parse_incompatible_opt(void)
 t_bin	post_parse_base(void)
 {
 	t_opts		*opts;
-	t_bin		retv;
 
-	retv = 0;
 	opts = ft_get_opts(0);
 	if (opts->err & ERR_UNK_OPT)
 	{
 		unknown_arg();
-		retv = BIT_01;
+		return (BIT_01);
 	}
 	if (!opts->value)
 	{
 		ft_dprintf(2, PROG_NAME ": missing host operand\n");
 		try_help_usage();
-		retv = BIT_07;
+		return (BIT_07);
 	}
-	return (retv);
+	return (0);
 }
 
 t_bin	post_parse(void)

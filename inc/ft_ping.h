@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/06 12:28:06 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/22 01:05:25 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define NO_ANSI
 # define PROG_NAME				"ft_ping"
 # define DEBUG					1
-# define VERSION				"1.2.0"
+# define VERSION				"1.2.1-beta"
 
 # include "libft_memory.h"
 # include "libft_print.h"
