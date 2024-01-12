@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 21:20:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/06 12:38:51 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:27:07 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	packet_print_icmphdr(t_icmphdr_echo *pkt)
 
 void	packet_print_icmpdata(void *data)
 {
-	dprintf(DEBUG_FD, "payload \n");
+	if (DEBUG)
+		dprintf(DEBUG_FD, "payload \n");
 	packet_print_raw(data + PADDING, get_conf()->size);
 }
 

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/06 12:19:40 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:24:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_fill_hdr_icmp(t_icmphdr_echo *packet)
 	packet->checksum = ft_checksum((void *)packet, \
 						LEN_HDR_ICMP_ECHO + FT_PING_ICMP_SIZE + PADDING);
 	ft_pdeb("icmphdr_echo: checksum 0x%04x\n", packet->checksum);
-	dprintf(DEBUG_FD, "icmphdr_echo: packet len %ld\n", sizeof(*packet));
+	if (DEBUG)
+		dprintf(DEBUG_FD, "icmphdr_echo: packet len %ld\n", sizeof(*packet));
 }
 
 void	ft_hdr_icmp_seq_inc(void)
@@ -46,7 +47,7 @@ void	ft_hdr_icmp_echo_fill(void *packet)
 {
 	t_conf	*conf;
 
-	if (gettimeofday(packet + LEN_HDR_ICMP_ECHO, NULL) == -1)
+	if (gettimeofday(packet + LEN_HDR_ICMP_ECHO, NULL) == -1 && DEBUG)
 		ft_dprintf(2, "Failed to get time of day\n");
 	conf = get_conf();
 	ft_memcpy(packet + LEN_HDR_ICMP_ECHO + PADDING, \
