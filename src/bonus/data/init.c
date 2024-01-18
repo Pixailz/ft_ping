@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:11:58 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:47:14 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_bin	init_config(void)
 	conf = get_conf();
 	if (!conf)
 	{
-		ft_perr("malloc" SEP "failed to malloc t_conf\n");
+		dprintf(2, "malloc" SEP "failed to malloc t_conf\n");
 		return (BIT_01);
 	}
 	return (BIT_00);

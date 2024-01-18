@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:11:17 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:45:58 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_bool	get_ip(t_conf *conf, char *value)
 		conf->cur_target.ip = ip_tmp;
 		return (FALSE);
 	}
-	ft_perr("%s: unknown host\n", ft_get_opts(0)->prog_name);
+	dprintf(2, "%s: unknown host\n", ft_get_opts(0)->prog_name);
 	return (TRUE);
 }
 
