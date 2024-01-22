@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/01/18 15:47:21 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/23 00:44:20 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_bool	get_ip(t_conf *conf, char *value)
 		conf->cur_target.ip = ip_tmp;
 		return (FALSE);
 	}
-	dprintf("%s: unknown host\n", ft_get_opts(0)->prog_name);
+	ft_dprintf(2, "%s: unknown host\n", ft_get_opts(0)->prog_name);
 	return (TRUE);
 }
 
@@ -62,7 +62,7 @@ static void	reset_stats(t_stats *sts)
 
 static t_bool	setup_target(t_conf *conf, char *value)
 {
-	char				ip_str[INET_ADDRSTRLEN];
+	char	ip_str[INET_ADDRSTRLEN];
 
 	conf->cur_target.value = value;
 	if (get_ip(conf, value))
