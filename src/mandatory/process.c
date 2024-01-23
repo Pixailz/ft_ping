@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/01/23 00:44:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:49:48 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	reset_stats(t_stats *sts)
 	sts->rtt_min = 0;
 	sts->rtt_avg = 0;
 	sts->rtt_max = 0;
-	sts->rtt_stddev = 0;
 }
 
 static t_bool	setup_target(t_conf *conf, char *value)

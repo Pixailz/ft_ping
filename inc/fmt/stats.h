@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 06:49:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 15:07:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/23 01:19:23 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ C_SIZE "%d" RST " data bytes"
 ", id 0x" ITA ORA "%04x" RST " = " ITA ORA "%d" RST
 
 # define FMT_STATS_PONG \
-C_SIZE "%d" RST " bytes from (" C_IP "%s" RST "): " \
+C_SIZE "%d" RST " bytes from " C_IP "%s" RST ": " \
 "icmp_seq=" ITA GRE "%d" RST " \
 ttl=" ITA GRE "%d" RST " \
 time=" YEL FMT_MS RST " ms\n"
