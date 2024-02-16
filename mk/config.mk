@@ -3,7 +3,7 @@ TARGET				:= ft_ping
 TARGET_BONUS		:= $(TARGET)
 CC					:= gcc
 VERSION				:= 1.2.3-beta
-CFLAGS				:= -Wall -Wextra -lm -DVERSION='"$(VERSION)"'
+CFLAGS				:= -Wall -Wextra -DVERSION='"$(VERSION)"'
 
 # check if the makefile is called from another or directly called
 ifeq ($(MAIN),1)
