@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/12/03 16:28:23 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:06:31 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,35 @@ char	*get_color_pkt_loss(int pkt_loss)
 	return (PUR);
 }
 
+t_ts	rtt_get_standard_deviation(t_stats sts, int pkt_recv, t_ts rtt_avg)
+{
+	t_ts	s;
+	t_ts	t;
+	int		i;
+
+	s = 0;
+	i = 0;
+	while (i < pkt_recv)
+	{
+		t = sts.rtts[i] - rtt_avg;
+		s = s + (t * t);
+		i++;
+	}
+	return (sqrt(s / pkt_recv));
+}
+
 void	print_rtt(t_stats sts, int pkt_recv)
 {
 	t_ts	rtt_avg;
+	t_ts	rtt_stddev;
 
 	rtt_avg = sts.rtt_avg / pkt_recv;
+	rtt_stddev = rtt_get_standard_deviation(sts, pkt_recv, rtt_avg);
 	printf(FMT_STATS_RTT, \
 		sts.rtt_min / 1000, sts.rtt_min % 1000, \
 		rtt_avg / 1000, rtt_avg % 1000, \
 		sts.rtt_max / 1000, sts.rtt_max % 1000, \
-		sts.rtt_stddev / 1000, sts.rtt_stddev % 1000);
+		rtt_stddev / 1000, rtt_stddev % 1000);
 }
 
 void	print_stats(void)

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/01/22 10:41:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:07:42 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 // # define NO_ANSI
 # define PROG_NAME				"ft_ping"
-# define DEBUG					1
+# ifndef DEBUG
+#  define DEBUG					1
+# endif //DEBUG
 
 # include "libft_memory.h"
 # include "libft_print.h"
@@ -64,6 +66,11 @@
 # include <sys/time.h>
 /*
  gettimeofday()
+ */
+
+# include <math.h>
+/*
+ sqrt()
  */
 
 # include "fmt.h"
@@ -177,16 +184,18 @@ typedef struct s_target
 	struct sockaddr	addr;
 }	t_target;
 
+# define NB_STATS	0xffff
+
 typedef struct s_stats
 {
 	t_ts		send_ts;
 	t_uint16	nb_recv;
 	t_uint16	nb_err;
 	t_uint16	nb_trans;
+	t_ts		rtts[NB_STATS];
 	t_ts		rtt_min;
 	t_ts		rtt_avg;
 	t_ts		rtt_max;
-	t_ts		rtt_stddev;
 }	t_stats;
 
 typedef struct s_conf
@@ -340,6 +349,7 @@ t_bool		send_ping(const struct sockaddr *dst);
 // stats/print.c
 void		print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo);
 char		*get_color_pkt_loss(int pkt_loss);
+t_ts		rtt_get_standard_deviation(t_stats sts, int pkt_recv, t_ts rtt_avg);
 void		print_rtt(t_stats sts, int pkt_recv);
 void		print_stats(void);
 

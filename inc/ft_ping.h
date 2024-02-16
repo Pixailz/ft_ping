@@ -15,7 +15,10 @@
 
 # define NO_ANSI
 # define PROG_NAME				"ft_ping"
-# define DEBUG					0
+# ifndef DEBUG
+#  define DEBUG					0
+# endif //DEBUG
+
 
 # include "libft_memory.h"
 # include "libft_print.h"

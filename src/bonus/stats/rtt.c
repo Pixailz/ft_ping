@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/21 04:33:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:06:53 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	update_stats_rtt(t_ts rtt, t_uint16 sequence)
 	t_conf	*conf;
 
 	conf = get_conf();
+	conf->stats.rtts[sequence] = rtt;
 	if (!sequence)
 	{
 		conf->stats.rtt_min = rtt;

@@ -6,14 +6,11 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/01/23 01:45:48 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:05:10 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 void	print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo)
 {
