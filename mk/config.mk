@@ -44,9 +44,13 @@ endif
 .RECIPEPREFIX		= >
 
 ## DEBUG
-
 ifeq ($(shell [ -z $(DEBUG) ] && printf 1 || printf 0),1)
 DEBUG				:= 0
+endif
+CFLAGS				+= -DDEBUG=$(DEBUG) -DDEBUG_FD=420
+
+ifeq ($(shell [ -z $(DEBUG_MAKE) ] && printf 1 || printf 0),1)
+DEBUG_MAKE			:= 0
 endif
 
 ifeq ($(DEBUG),0)
@@ -76,6 +80,10 @@ endif
 endif
 endif
 
-ifeq ($(NO_ANSI), 1)
-CFLAGS				+= -DNO_ANSI=1
+ifeq ($(ANSI_NO_COLOR),1)
+CFLAGS				+= -DANSI_NO_COLOR
+endif
+
+ifeq ($(ANSI_NO_MODIFIER),1)
+CFLAGS				+= -DANSI_NO_MODIFIER
 endif
