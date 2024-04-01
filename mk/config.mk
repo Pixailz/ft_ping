@@ -4,7 +4,7 @@ CC					:= gcc
 VERSION				:= 1.2.4
 AUTHOR				:= Pixailz
 LDFLAGS				:= -lm
-CFLAGS				:= -Wall -Wextra $(LDFLAGS)
+CFLAGS				:= -Wall -Wextra
 
 # check if the makefile is called from another or directly called
 ifeq ($(MAIN),1)

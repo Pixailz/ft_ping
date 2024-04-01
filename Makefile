@@ -22,7 +22,7 @@ $(TARGET):		$(LIBS) $(OBJ_C)
 > $(call P_INF,Creating $(R)$(TARGET)$(RST))
 > printf "\n\n"
 > $(call PB_PRINT_ELAPSED)
-> $(CC) $(CFLAGS) -o $@ $(OBJ_C) $(LIBS)
+> $(CC) $(CFLAGS) -o $@ $(OBJ_C) $(LIBS) $(LDFLAGS)
 > $(call PB_TARGET_DONE)
 
 ## objs
@@ -32,7 +32,7 @@ $(TARGET):		$(LIBS) $(OBJ_C)
 # $(@D)		: dir target
 $(OBJ_C):		$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 > $(call PB_PRINT,$(@))
-> $(CC) $(CFLAGS) -o $@ -c $<
+> $(CC) $(CFLAGS) -o $@ -c $< $(LDFLAGS)
 
 ### LIBS
 $(LIBFT):
