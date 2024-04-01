@@ -15,16 +15,14 @@ $(call PB_INIT)
 
 .DEFAULT: all
 
-all:			setup $(TARGET)
-
-bonus:			setup $(TARGET)
+all:			setup $(TARGET) $(LIBS)
 
 ### TARGETS
 $(TARGET):		$(LIBS) $(OBJ_C)
 > $(call P_INF,Creating $(R)$(TARGET)$(RST))
 > printf "\n\n"
 > $(call PB_PRINT_ELAPSED)
-> $(CC) $(CFLAGS) -o $@ $(OBJ_C) $(LIBS) -lm
+> $(CC) $(CFLAGS) -o $@ $(OBJ_C) $(LIBS)
 > $(call PB_TARGET_DONE)
 
 ## objs
@@ -34,12 +32,13 @@ $(TARGET):		$(LIBS) $(OBJ_C)
 # $(@D)		: dir target
 $(OBJ_C):		$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 > $(call PB_PRINT,$(@))
-> $(CC) $(CFLAGS) -o $@ -c $< -lm
+> $(CC) $(CFLAGS) -o $@ -c $<
 
 ### LIBS
 $(LIBFT):
 ifeq ($(USE_LIBFT),1)
-> make -C lib/ft_libft all
+> PROG_NAME=$(TARGET) DEBUG=$(DEBUG) DEBUG_FD=$(DEBUG_FD) AUTHOR=$(AUTHOR) \
+	VERSION=$(VERSION) make -C lib/ft_libft all
 endif
 
 $(MINI_LIBX):

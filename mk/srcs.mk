@@ -1,64 +1,31 @@
 # SRCS
-SRC_C_MANDATORY := cmd/help.c \
-				   cmd/usage.c \
-				   cmd/version.c \
-				   data/conf.c \
-				   data/exit.c \
-				   data/free.c \
-				   data/init.c \
-				   error.c \
-				   interrupt.c \
-				   main.c \
-				   packet/checksum.c \
-				   packet/icmp.c \
-				   packet/ip.c \
-				   packet/print.c \
-				   parsing/parse.c \
-				   parsing/post_parse.c \
-				   parsing/post_parse_cmd.c \
-				   parsing/post_parse_conf_1.c \
-				   parsing/post_parse_pattern.c \
-				   process.c \
-				   recv_pong.c \
-				   run.c \
-				   send_ping.c \
-				   stats/print.c \
-				   stats/rtt.c
+SRC_C := cmd/help.c \
+		 cmd/usage.c \
+		 data/conf.c \
+		 data/exit.c \
+		 data/free.c \
+		 data/init.c \
+		 error.c \
+		 interrupt.c \
+		 main.c \
+		 packet/checksum.c \
+		 packet/get_packet_size.c \
+		 packet/icmp.c \
+		 packet/ip.c \
+		 packet/print.c \
+		 parsing/parse.c \
+		 parsing/post_parse.c \
+		 parsing/post_parse_conf_1.c \
+		 parsing/post_parse_conf_2.c \
+		 parsing/post_parse_pattern.c \
+		 process.c \
+		 recv_pong.c \
+		 run.c \
+		 send_ping.c \
+		 stats/print.c \
+		 stats/rtt.c
 
-SRC_C_BONUS := cmd/help.c \
-			   cmd/usage.c \
-			   cmd/version.c \
-			   data/conf.c \
-			   data/exit.c \
-			   data/free.c \
-			   data/init.c \
-			   error.c \
-			   interrupt.c \
-			   main.c \
-			   packet/checksum.c \
-			   packet/get_packet_size.c \
-			   packet/icmp.c \
-			   packet/ip.c \
-			   packet/print.c \
-			   parsing/parse.c \
-			   parsing/post_parse.c \
-			   parsing/post_parse_cmd.c \
-			   parsing/post_parse_conf_1.c \
-			   parsing/post_parse_conf_2.c \
-			   parsing/post_parse_pattern.c \
-			   process.c \
-			   recv_pong.c \
-			   run.c \
-			   send_ping.c \
-			   stats/print.c \
-			   stats/rtt.c
-
-ifeq ($(BONUS),1)
-TARGET				:= $(TARGET_BONUS)
-SRC_C				:= $(addprefix $(SRC_DIR)/bonus/,$(SRC_C_BONUS))
-else
-SRC_C				:= $(addprefix $(SRC_DIR)/mandatory/,$(SRC_C_MANDATORY))
-endif
+SRC_C				:= $(addprefix $(SRC_DIR)/,$(SRC_C))
 
 # OBJ
 OBJ_C				:= $(patsubst $(SRC_DIR)/%,$(OBJ_DIR)/%,$(SRC_C:%.c=%.o))

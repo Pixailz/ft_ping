@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ping.h                                          :+:      :+:    :+:   */
+/*   ft_ping_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/01/23 01:52:16 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:07:42 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PING_H
-# define FT_PING_H
+#ifndef FT_PING_BONUS_H
+# define FT_PING_BONUS_H
 
-# define NO_ANSI
+// # define NO_ANSI
 # define PROG_NAME				"ft_ping"
 # ifndef DEBUG
-#  define DEBUG					0
+#  define DEBUG					1
 # endif //DEBUG
-
 
 # include "libft_memory.h"
 # include "libft_print.h"
@@ -46,8 +45,7 @@
 
 # include <stdio.h>
 /*
- printf()
- dprintf()
+ sprintf()
  */
 
 # include <arpa/inet.h>
@@ -78,7 +76,8 @@
 # include "fmt.h"
 
 // Identification of the iphdr
-# define FT_PING_IP_ID			420
+# define FT_PING_IP_ID					420
+# define FT_PING_MAX_ICMP_DATA_SIZE		0xff00
 
 /*
  * packet structure :
@@ -87,52 +86,58 @@
  *   [ ICMP payload ]
  */
 
-# define FT_PING_USE_IP_OPTS	FALSE
+# define FT_PING_USE_IP_OPTS			FALSE
 
 # if FT_PING_USE_IP_OPTS == 1
-
-#  define LEN_HDR_IP			24
-
+#  define LEN_HDR_IP					24
 # else
-
-#  define LEN_HDR_IP			20
-
+#  define LEN_HDR_IP					20
 # endif // FT_PING_USE_IP_OPTS == 1
+# define LEN_HDR_ICMP_ECHO				8
+# define PADDING						8
 
-# define LEN_HDR_ICMP_ECHO		8
-# define PADDING				8
-# define FT_PING_ICMP_SIZE		48
+# define FT_PING_ICMP_SIZE				48
+// Number of packet to send
+// -c
+# define FT_PING_NB_PKT					-1
+// Second of time execution allowed
+// -w
+# define FT_PING_TIMEOUT				64
+// Second to set SO_RCVTIMEO And second before recvmsg receive SIGALRM
+// -W
+# define FT_PING_LINGER					10
+// Time To Live of the iphdr
+// --ttl
+# define FT_PING_TTL					64
+// Interval, in sec, between each packet
+// -i
+# define FT_PING_INTERVAL				1
 
-# define PACKET_SIZE LEN_HDR_IP + LEN_HDR_ICMP_ECHO + PADDING + FT_PING_ICMP_SIZE
-
-# define MAX_PACKET_SIZE		0x200
+# define MAX_PACKET_SIZE				0xffff
 
 // MASK
-# define IPHDR_M_IHL			0x0F
-# define IPHDR_M_VERSION		0xF0
-# define IPHDR_M_FRAG_OFF		0x1FFF
-# define IPHDR_M_FLAGS			0xE000
-# define IPHDR_M_OPTIONS		0xF000
-# define IPHDR_M_PADDING		0x000F
+# define IPHDR_M_IHL					0x0F
+# define IPHDR_M_VERSION				0xF0
+# define IPHDR_M_FRAG_OFF				0x1FFF
+# define IPHDR_M_FLAGS					0xE000
+# define IPHDR_M_OPTIONS				0xF000
+# define IPHDR_M_PADDING				0x000F
 
 // IPHDR OPTIONS
-# define IPHDR_F_DONT_FRAG		0x2
-# define IPHDR_F_MORE_FRAG		0x1
+# define IPHDR_F_DONT_FRAG				0x2
+# define IPHDR_F_MORE_FRAG				0x1
 
-typedef suseconds_t				t_ts;
+typedef suseconds_t						t_ts;
 
 typedef struct __attribute__((__packed__)) s_iphdr
 {
 # if __BYTE_ORDER == __LITTLE_ENDIAN
-
 	t_uint8		ihl:4;
 	t_uint8		version:4;
-
 # elif __BYTE_ORDER == __BIG_ENDIAN
 
 	t_uint8		version:4;
 	t_uint8		ihl:4;
-
 # endif // __BYTE_ORDER == __LITTLE_ENDIAN
 	t_uint8		tos;
 	t_uint16	total_len;
@@ -148,19 +153,15 @@ typedef struct __attribute__((__packed__)) s_iphdr
 	t_uint32	dst_addr;
 
 # if FT_PING_USE_IP_OPTS == 1
-
 #  if __BYTE_ORDER == __LITTLE_ENDIAN
 
 	t_uint32	options:24;
 	t_uint32	padding:8;
-
 #  elif __BYTE_ORDER == __BIG_ENDIAN
-
 	t_uint32	padding:8;
 	t_uint32	options:24;
 
 #  endif // __BYTE_ORDER == __LITTLE_ENDIAN
-
 # endif // FT_PING_USE_IP_OPTS == 1
 
 }	t_iphdr;
@@ -183,7 +184,7 @@ typedef struct s_target
 	struct sockaddr	addr;
 }	t_target;
 
-# define NB_STATS 0xffff
+# define NB_STATS	0xffff
 
 typedef struct s_stats
 {
@@ -197,22 +198,6 @@ typedef struct s_stats
 	t_ts		rtt_max;
 }	t_stats;
 
-// Number of packet to send
-// -c
-# define FT_PING_NB_PKT			-1
-// Second of time execution allowed
-// -w
-# define FT_PING_TIMEOUT		64
-// Second to set SO_RCVTIMEO And second before recvmsg receive SIGALRM
-// -W
-# define FT_PING_LINGER			10
-// Time To Live of the iphdr
-// --ttl
-# define FT_PING_TTL			64
-// Interval, in sec, between each packet
-// -i
-# define FT_PING_INTERVAL		1
-
 typedef struct s_conf
 {
 	int			socket;
@@ -222,16 +207,24 @@ typedef struct s_conf
 	t_int32		linger;
 	t_int32		interval;
 	t_int32		ttl;
-	char		data_icmp[FT_PING_ICMP_SIZE];
+	t_bool		flood;
+	t_int32		current_preload;
+	t_int32		preload;
+	t_bool		custom_size;
+	t_int32		size;
+	char		*pattern;
+	t_int32		pattern_size;
+	char		*data_icmp;
+	t_uint16	tos;
 
 	t_ts		begin;
 
 	t_uint16	id_icmp;
-	t_uint16	sequence;
+	t_int32		sequence;
 
 	t_target	cur_target;
 
-	char		packet[PACKET_SIZE];
+	char		packet[MAX_PACKET_SIZE];
 
 	t_stats		stats;
 
@@ -249,15 +242,10 @@ void		help_header(void);
 void		help_part_1(void);
 void		help_part_2(void);
 void		help_footer(void);
-void		help(void);
+t_bin		help(void);
 
 // cmd/usage.c
-void		usage(void);
-void		try_help_usage(void);
-void		unknown_arg(void);
-
-// cmd/version.c
-void		version(void);
+t_bin		usage(void);
 
 // data/conf.c
 t_conf		*get_conf(void);
@@ -291,6 +279,10 @@ int			main(int ac, char **av);
 // packet/checksum.c
 t_uint16	ft_checksum(char *data, t_size size);
 
+// packet/get_packet_size.c
+t_size		get_packet_size(void);
+t_size		get_icmp_size(void);
+
 // packet/icmp.c
 void		ft_fill_hdr_icmp(t_icmphdr_echo *packet);
 void		ft_hdr_icmp_seq_inc(void);
@@ -312,12 +304,8 @@ void		packet_print_raw(char *pkt, t_size size);
 t_bin		parse_opts(int ac, char **av);
 
 // parsing/post_parse.c
-t_bin		post_parse_base(void);
+t_bool		post_parse_incompatible_opt(void);
 t_bin		post_parse(void);
-
-// parsing/post_parse_cmd.c
-t_bool		exec_cmd_opt(t_opt opt);
-t_bool		post_parse_cmd_opt(void);
 
 // parsing/post_parse_conf_1.c
 void		post_parse_count(t_conf *conf);
@@ -326,7 +314,13 @@ void		post_parse_linger(t_conf *conf);
 void		post_parse_interval(t_conf *conf);
 void		post_parse_ttl(t_conf *conf);
 
+// parsing/post_parse_conf_2.c
+void		post_parse_preload(t_conf *conf);
+void		post_parse_tos(t_conf *conf);
+
 // parsing/post_parse_pattern.c
+t_bin		post_parse_pattern_custom(t_conf *conf, char *str);
+void		post_parse_icmp_data_custom(t_conf *conf);
 void		post_parse_icmp_data_random(t_conf *conf);
 int			post_parse_pattern(t_conf *conf);
 
@@ -355,4 +349,4 @@ void		update_stats_rtt(t_ts rtt, t_uint16 sequence);
 
 /* ########################################################################## */
 
-#endif //FT_PING_H
+#endif //FT_PING_BONUS_H

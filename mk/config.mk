@@ -1,9 +1,10 @@
 # BASE
 TARGET				:= ft_ping
-TARGET_BONUS		:= $(TARGET)
 CC					:= gcc
-VERSION				:= 1.2.3-beta
-CFLAGS				:= -Wall -Wextra -DVERSION='"$(VERSION)"'
+VERSION				:= 1.2.4
+AUTHOR				:= Pixailz
+LDFLAGS				:= -lm
+CFLAGS				:= -Wall -Wextra $(LDFLAGS)
 
 # check if the makefile is called from another or directly called
 ifeq ($(MAIN),1)
@@ -44,13 +45,17 @@ endif
 .RECIPEPREFIX		= >
 
 ## DEBUG
-ifeq ($(shell [ -z $(DEBUG) ] && printf 1 || printf 0),1)
-DEBUG				:= 0
-endif
-CFLAGS				+= -DDEBUG=$(DEBUG) -DDEBUG_FD=420
+DEBUG				?= 0
+DEBUG_FD			?= 420
+CFLAGS				+= \
+	-DPWD='"$(PWD)"' \
+	-DDEBUG=$(DEBUG) \
+	-DDEBUG_FD=$(DEBUG_FD) \
+	-DVERSION='"$(VERSION)"' \
+	-DAUTHOR='"$(AUTHOR)"'
 
 ifeq ($(shell [ -z $(DEBUG_MAKE) ] && printf 1 || printf 0),1)
-DEBUG_MAKE			:= 0
+DEBUG_MAKE			?= 0
 endif
 
 ifeq ($(DEBUG),0)
@@ -65,20 +70,6 @@ endif
 endif
 
 ## PARSE_VARIABLE
-### BONUS
-ifeq ($(findstring bonus,$(MAKECMDGOALS)),bonus)
-BONUS				:= 1
-else
-ifeq ($(findstring re_bonus,$(MAKECMDGOALS)),re_bonus)
-BONUS				:= 1
-else
-ifeq ($(findstring run_bonus,$(MAKECMDGOALS)),run_bonus)
-BONUS				:= 1
-else
-BONUS				:= 0
-endif
-endif
-endif
 
 ifeq ($(ANSI_NO_COLOR),1)
 CFLAGS				+= -DANSI_NO_COLOR
