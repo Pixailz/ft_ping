@@ -6,13 +6,13 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/04/01 04:53:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:52:05 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-void	print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo)
+void	print_pong_stats(unsigned char *pkt, t_icmphdr_echo *icmphdr_echo)
 {
 	t_iphdr			*iphdr;
 	t_conf			*conf;
@@ -26,7 +26,7 @@ void	print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo)
 	iphdr = (t_iphdr *)pkt;
 	if (!conf->flood && !ft_optget("quiet")->is_present)
 		printf(FMT_STATS_PONG, \
-			ft_htons(iphdr->total_len) - (LEN_HDR_IP + \
+			ft_htons(iphdr->total_len) - (PACK_LEN_IP + \
 				(conf->custom_size * PADDING)), \
 			ip_str, \
 			ft_htons(icmphdr_echo->sequence), \

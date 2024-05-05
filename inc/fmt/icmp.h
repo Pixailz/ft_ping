@@ -6,12 +6,12 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 06:49:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 09:42:20 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:17:50 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICMP_H
-# define ICMP_H
+#ifndef FMT_ICMP_H
+# define FMT_ICMP_H
 
 const char	*ICMP_RESP[] =
 {
@@ -29,4 +29,4 @@ const char	*ICMP_RESP[] =
 	[ICMP_ADDRESSREPLY]		= "Address Mask Reply"
 };
 
-#endif // ICMP_H
+#endif // FMT_ICMP_H

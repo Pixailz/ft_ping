@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/04/01 04:53:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/06 00:07:47 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_fill_hdr_icmp(t_icmphdr_echo *packet)
 	packet->checksum = 0;
 	packet->identifier = ft_htons(conf->id_icmp);
 	packet->sequence = ft_htons(0);
-	packet->checksum = ft_checksum((void *)packet, get_icmp_size());
+	packet->checksum = ft_packet_checksum((void *)packet, get_icmp_size());
 	ft_pdeb("icmphdr_echo: checksum %#06x\n", packet->checksum);
 	if (DEBUG)
 		dprintf(DEBUG_FD, "icmphdr_echo: packet len %ld\n", sizeof(*packet));
@@ -34,21 +34,21 @@ void	ft_hdr_icmp_seq_inc(void)
 	t_icmphdr_echo	*pkt;
 
 	conf = get_conf();
-	pkt = (t_icmphdr_echo *)(conf->packet + LEN_HDR_IP);
+	pkt = ft_packet_get_icmp_echo(&conf->packet);
 	conf->sequence++;
 	pkt->sequence = ft_htons(conf->sequence);
 	pkt->checksum = 0;
-	pkt->checksum = ft_checksum((void *)pkt, get_icmp_size());
+	pkt->checksum = ft_packet_checksum((void *)pkt, get_icmp_size());
 }
 
 void	ft_hdr_icmp_echo_fill(void *packet)
 {
 	t_conf	*conf;
 
-	if (gettimeofday(packet + LEN_HDR_ICMP_ECHO, NULL) == -1 && DEBUG)
+	if (gettimeofday(packet + PACK_LEN_ICMP_ECHO, NULL) == -1 && DEBUG)
 		ft_dprintf(2, "Failed to get time of day\n");
 	conf = get_conf();
-	ft_memcpy(packet + LEN_HDR_ICMP_ECHO + PADDING, \
+	ft_memcpy(packet + PACK_LEN_ICMP_ECHO + PADDING, \
 												conf->data_icmp, conf->size);
 	ft_fill_hdr_icmp(packet);
 }

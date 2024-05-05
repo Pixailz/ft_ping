@@ -6,12 +6,12 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 06:49:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/11/17 08:38:56 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:17:37 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PACKET_H
-# define PACKET_H
+#ifndef FMT_PACKET_H
+# define FMT_PACKET_H
 
 # define PKT_V_PREFIX "0x"
 # define PKT_V_FMT "%0"
@@ -83,4 +83,4 @@
 "|" PKT_16 "|" PKT_16 "|\n" \
 "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
 
-#endif // PACKET_H
+#endif // FMT_PACKET_H

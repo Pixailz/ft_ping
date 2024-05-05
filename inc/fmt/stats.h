@@ -6,12 +6,12 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 06:49:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/01/23 01:19:23 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:17:55 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STATS_H
-# define STATS_H
+#ifndef FMT_STATS_H
+# define FMT_STATS_H
 
 # define C_MS_MIN		GRE
 # define C_MS_AVG		ORA
@@ -54,4 +54,4 @@ ORA "%s" RST "\n"
 "Timeout from " C_VALUE "%s" RST " (" C_IP "%s" RST "):" \
 " icmp_seq=" ITA RED "%d" RST "\n"
 
-#endif // STATS_H
+#endif // FMT_STATS_H

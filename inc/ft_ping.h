@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ping_bonus.h                                    :+:      :+:    :+:   */
+/*   ft_ping.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/02/16 15:07:42 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:15:56 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PING_BONUS_H
-# define FT_PING_BONUS_H
+#ifndef FT_PING_H
+# define FT_PING_H
 
 // # define NO_ANSI
 # define PROG_NAME				"ft_ping"
@@ -23,6 +23,7 @@
 # include "libft_print.h"
 # include "libft_parsing.h"
 # include "libft_network/ipv4.h"
+# include "libft_network/packet.h"
 # include "libft_random.h"
 
 # include <errno.h>
@@ -86,14 +87,6 @@
  *   [ ICMP payload ]
  */
 
-# define FT_PING_USE_IP_OPTS			FALSE
-
-# if FT_PING_USE_IP_OPTS == 1
-#  define LEN_HDR_IP					24
-# else
-#  define LEN_HDR_IP					20
-# endif // FT_PING_USE_IP_OPTS == 1
-# define LEN_HDR_ICMP_ECHO				8
 # define PADDING						8
 
 # define FT_PING_ICMP_SIZE				48
@@ -113,69 +106,7 @@
 // -i
 # define FT_PING_INTERVAL				1
 
-# define MAX_PACKET_SIZE				0xffff
-
-// MASK
-# define IPHDR_M_IHL					0x0F
-# define IPHDR_M_VERSION				0xF0
-# define IPHDR_M_FRAG_OFF				0x1FFF
-# define IPHDR_M_FLAGS					0xE000
-# define IPHDR_M_OPTIONS				0xF000
-# define IPHDR_M_PADDING				0x000F
-
-// IPHDR OPTIONS
-# define IPHDR_F_DONT_FRAG				0x2
-# define IPHDR_F_MORE_FRAG				0x1
-
 typedef suseconds_t						t_ts;
-
-typedef struct __attribute__((__packed__)) s_iphdr
-{
-# if __BYTE_ORDER == __LITTLE_ENDIAN
-	t_uint8		ihl:4;
-	t_uint8		version:4;
-# elif __BYTE_ORDER == __BIG_ENDIAN
-
-	t_uint8		version:4;
-	t_uint8		ihl:4;
-# endif // __BYTE_ORDER == __LITTLE_ENDIAN
-	t_uint8		tos;
-	t_uint16	total_len;
-
-	t_uint16	identification;
-	t_uint16	fragment_off;
-
-	t_uint8		ttl;
-	t_uint8		protocol;
-	t_uint16	checksum;
-
-	t_uint32	src_addr;
-	t_uint32	dst_addr;
-
-# if FT_PING_USE_IP_OPTS == 1
-#  if __BYTE_ORDER == __LITTLE_ENDIAN
-
-	t_uint32	options:24;
-	t_uint32	padding:8;
-#  elif __BYTE_ORDER == __BIG_ENDIAN
-	t_uint32	padding:8;
-	t_uint32	options:24;
-
-#  endif // __BYTE_ORDER == __LITTLE_ENDIAN
-# endif // FT_PING_USE_IP_OPTS == 1
-
-}	t_iphdr;
-
-typedef struct __attribute__((__packed__)) s_icmphdr_echo
-{
-	t_uint8		type;
-	t_uint8		code;
-	t_uint16	checksum;
-
-	t_uint16	identifier;
-	t_uint16	sequence;
-
-}	t_icmphdr_echo;
 
 typedef struct s_target
 {
@@ -224,7 +155,7 @@ typedef struct s_conf
 
 	t_target	cur_target;
 
-	char		packet[MAX_PACKET_SIZE];
+	t_packet	packet;
 
 	t_stats		stats;
 
@@ -267,7 +198,7 @@ t_bin		init_signal(void);
 // error.c
 void		print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn);
 void		print_icmp_timeout(void);
-void		print_icmp_error(char *pkt);
+void		print_icmp_error(unsigned char *pkt);
 
 // interrupt.c
 void		ft_ping_interrupt(int sig);
@@ -275,9 +206,6 @@ void		ft_ping_interrupt(int sig);
 // main.c
 t_bin		ft_ping(int ac, char **av);
 int			main(int ac, char **av);
-
-// packet/checksum.c
-t_uint16	ft_checksum(char *data, t_size size);
 
 // packet/get_packet_size.c
 t_size		get_packet_size(void);
@@ -337,7 +265,7 @@ void		ft_ping_run(void);
 t_bool		send_ping(const struct sockaddr *dst);
 
 // stats/print.c
-void		print_pong_stats(char *pkt, t_icmphdr_echo *icmphdr_echo);
+void		print_pong_stats(unsigned char *pkt, t_icmphdr_echo *icmphdr_echo);
 char		*get_color_pkt_loss(int pkt_loss);
 t_ts		rtt_get_standard_deviation(t_stats sts, int pkt_recv, t_ts rtt_avg);
 void		print_rtt(t_stats sts, int pkt_recv);
@@ -349,4 +277,4 @@ void		update_stats_rtt(t_ts rtt, t_uint16 sequence);
 
 /* ########################################################################## */
 
-#endif //FT_PING_BONUS_H
+#endif //FT_PING_H

@@ -8,7 +8,6 @@ SRC_C := cmd/help.c \
 		 error.c \
 		 interrupt.c \
 		 main.c \
-		 packet/checksum.c \
 		 packet/get_packet_size.c \
 		 packet/icmp.c \
 		 packet/ip.c \

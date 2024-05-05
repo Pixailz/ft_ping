@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:08:23 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/04/01 04:53:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:51:36 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn)
 		err_str = FT_NULL;
 	ft_ntop(AF_INET, conf->cur_target.ip, ip_str);
 	ft_printf(FMT_STATS_PONG_ERR, \
-		ft_htons(tot_len) - LEN_HDR_IP, \
+		ft_htons(tot_len) - PACK_LEN_IP, \
 		conf->cur_target.value, ip_str, seq, err_str);
 }
 
@@ -42,13 +42,13 @@ void	print_icmp_timeout(void)
 																conf->sequence);
 }
 
-void	print_icmp_error(char *pkt)
+void	print_icmp_error(unsigned char *pkt)
 {
 	t_iphdr			*iphdr;
 	t_icmphdr_echo	*icmphdr_echo;
 
 	iphdr = (t_iphdr *)pkt;
-	icmphdr_echo = (t_icmphdr_echo *)(pkt + LEN_HDR_IP);
+	icmphdr_echo = (t_icmphdr_echo *)(pkt + PACK_LEN_IP);
 	if (icmphdr_echo->type < 19)
 		print_icmp_errn(icmphdr_echo->sequence, iphdr->total_len, \
 															icmphdr_echo->type);

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:53:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/04/01 05:47:29 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:15:37 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_hdr_ip_set_dst(t_int4 dst)
 	if (!conf)
 	{
 		conf = get_conf();
-		pkt = (t_iphdr *)conf->packet;
+		pkt = ft_packet_get_ip(&conf->packet);
 	}
 	pkt->dst_addr = dst;
 }
@@ -40,7 +40,7 @@ void	ft_hdr_ip_fill(t_iphdr *packet)
 
 	conf = get_conf();
 	packet->version = 4;
-	packet->ihl = LEN_HDR_IP / 4;
+	packet->ihl = PACK_LEN_IP / 4;
 	packet->tos = conf->tos;
 	packet->total_len = ft_htons(get_packet_size());
 	packet->identification = ft_htons(FT_PING_IP_ID);

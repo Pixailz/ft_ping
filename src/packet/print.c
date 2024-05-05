@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 21:20:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/04/01 04:53:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:19:31 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	packet_print(void *pkt)
 {
 	ft_dprintf(DEBUG_FD, "%s", FMT_BIN_BAR);
 	packet_print_iphdr(pkt);
-	packet_print_icmphdr(pkt + LEN_HDR_IP);
-	packet_print_icmpdata(pkt + LEN_HDR_IP + LEN_HDR_ICMP_ECHO);
+	packet_print_icmphdr(pkt + PACK_LEN_IP);
+	packet_print_icmpdata(pkt + PACK_LEN_IP + PACK_LEN_ICMP_ECHO);
 }
 
 void	packet_print_raw(char *pkt, t_size size)

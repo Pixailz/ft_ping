@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:34:50 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/04/01 04:53:41 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:22:33 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_ping_run(void)
 		return ;
 	recv_pong();
 	ft_hdr_icmp_seq_inc();
-	pkt = (t_icmphdr_echo *)(conf->packet + LEN_HDR_IP);
+	pkt = ft_packet_get_icmp_echo(&conf->packet);
 	if (DEBUG)
 		dprintf(DEBUG_FD, "icmphdr_echo (inc): checksum %#06x\n", pkt->checksum);
 }
