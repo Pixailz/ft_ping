@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/05 23:15:56 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/06 23:55:38 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@
  sqrt()
  */
 
-# include "fmt.h"
+# include "fmt_stats.h"
 
 // Identification of the iphdr
 # define FT_PING_IP_ID					420
@@ -221,12 +221,8 @@ void		ft_hdr_ip_set_dst(t_int4 dst);
 void		ft_hdr_ip_fill(t_iphdr *packet);
 
 // packet/print.c
-void		packet_print_iphdr(t_iphdr *pkt);
-void		packet_print_iphdr(t_iphdr *pkt);
-void		packet_print_icmphdr(t_icmphdr_echo *pkt);
 void		packet_print_icmpdata(void *data);
 void		packet_print(void *pkt);
-void		packet_print_raw(char *pkt, t_size size);
 
 // parsing/parse.c
 t_bin		parse_opts(int ac, char **av);

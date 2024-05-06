@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:53:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/05 23:52:30 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/06 22:40:21 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_bool	check_echo_reply(t_packet *pkt)
 	t_conf			*conf;
 
 	conf = get_conf();
-	icmphdr_echo = ft_packet_get_icmp_echo(pkt);
+	icmphdr_echo = ft_pkt_get_icmp_echo(pkt);
 	if (icmphdr_echo->type != ICMP_ECHOREPLY)
 	{
 		if ((int)icmphdr_echo->type == ICMP_ECHO)
@@ -57,7 +57,7 @@ void	recv_pong(void)
 	t_packet		pong_pkt;
 	t_conf			*conf;
 
-	pong_pkt = ft_packet_get();
+	pong_pkt = ft_pkt_get();
 	conf = get_conf();
 	while (TRUE)
 	{

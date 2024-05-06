@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stats.h                                            :+:      :+:    :+:   */
+/*   fmt_stats.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 06:49:35 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/05 23:17:55 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/06 23:44:10 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FMT_STATS_H
 # define FMT_STATS_H
 
+# define C_VALUE		BOL BLU
+# define C_IP			BOL CYA
+# define C_SIZE			RED
 # define C_MS_MIN		GRE
 # define C_MS_AVG		ORA
 # define C_MS_MAX		RED

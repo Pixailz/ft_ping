@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/05 23:10:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/06 22:40:21 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ t_bin	init_packet(void)
 	t_conf	*conf;
 
 	conf = get_conf();
-	ft_hdr_ip_fill(ft_packet_get_ip(&conf->packet));
-	ft_hdr_icmp_echo_fill(ft_packet_get_icmp_echo(&conf->packet));
+	ft_hdr_ip_fill(ft_pkt_get_ip(&conf->packet));
+	ft_hdr_icmp_echo_fill(ft_pkt_get_icmp_echo(&conf->packet));
 	return (BIT_00);
 }
 

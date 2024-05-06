@@ -6,13 +6,27 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:08:23 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/05 23:51:36 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/06 23:55:43 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ping.h"
 
-#include "fmt/icmp.h"
+const char	*ICMP_RESP[] =
+{
+	[ICMP_DEST_UNREACH]		= "Destination Unreachable",
+	[ICMP_SOURCE_QUENCH]	= "Source Quench",
+	[ICMP_REDIRECT]			= "Redirect (change route)",
+	[ICMP_ECHO]				= "Echo Request",
+	[ICMP_TIME_EXCEEDED]	= "Time to live exceeded",
+	[ICMP_PARAMETERPROB]	= "Parameter Problem",
+	[ICMP_TIMESTAMP]		= "Timestamp Request",
+	[ICMP_TIMESTAMPREPLY]	= "Timestamp Reply",
+	[ICMP_INFO_REQUEST]		= "Information Request",
+	[ICMP_INFO_REPLY]		= "Information Reply",
+	[ICMP_ADDRESS]			= "Address Mask Request",
+	[ICMP_ADDRESSREPLY]		= "Address Mask Reply"
+};
 
 void	print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn)
 {

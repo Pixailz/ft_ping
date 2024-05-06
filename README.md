@@ -79,14 +79,14 @@ to make stats about our ping
 1. ALL
    ```sh
    sudo bash -c "valgrind \
-    --leak-check=full \
-    --show-leak-kinds=all \
-    --track-origins=yes \
-    --trace-children=yes \
-    --track-fds=yes \
-    ./ft_ping 127.0.0.1 127.0.0.2 127.0.0.3 DEBUG_FD>exec.log"
+		--leak-check=full \
+		--show-leak-kinds=all \
+		--track-origins=yes \
+		--trace-children=yes \
+		--track-fds=yes \
+		./ft_ping 127.0.0.1 127.0.0.2 127.0.0.3 DEBUG_FD>exec.log"
    ```
 
 ## TODO
 
-1. A little more falgz
+1. print_packet -> get_packet_str

@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:53:21 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/05 23:15:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/06 22:40:21 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_hdr_ip_set_dst(t_int4 dst)
 	if (!conf)
 	{
 		conf = get_conf();
-		pkt = ft_packet_get_ip(&conf->packet);
+		pkt = ft_pkt_get_ip(&conf->packet);
 	}
 	pkt->dst_addr = dst;
 }
