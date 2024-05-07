@@ -14,15 +14,15 @@
 
 void	packet_print_icmpdata(void *data)
 {
-	ft_pkt_print_icmp(data + PACK_LEN_IP);
+	ft_pkt_print_icmp(DEBUG_FD, data + PACK_LEN_IP);
 	if (DEBUG)
 		dprintf(DEBUG_FD, "payload \n");
-	ft_pkt_print_raw(data + PADDING, get_conf()->size);
+	ft_pkt_print_raw(DEBUG_FD, data + PADDING, get_conf()->size);
 }
 
 void	packet_print(void *pkt)
 {
 	ft_dprintf(DEBUG_FD, "%s", FMT_BIN_BAR);
-	ft_pkt_print_ip(pkt);
+	ft_pkt_print_ip(DEBUG_FD, pkt);
 	packet_print_icmpdata(pkt + PACK_LEN_IP + PACK_LEN_ICMP_ECHO);
 }

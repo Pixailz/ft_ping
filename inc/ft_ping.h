@@ -13,7 +13,7 @@
 #ifndef FT_PING_H
 # define FT_PING_H
 
-// # define NO_ANSI
+// # define ANSI_NO_COLOR
 # define PROG_NAME				"ft_ping"
 # ifndef DEBUG
 #  define DEBUG					1
