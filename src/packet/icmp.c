@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:14:46 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/06 22:43:24 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:09:12 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_hdr_icmp_echo_fill(void *packet)
 	if (gettimeofday(packet + PACK_LEN_ICMP_ECHO, NULL) == -1 && DEBUG)
 		ft_dprintf(2, "Failed to get time of day\n");
 	conf = get_conf();
-	ft_memcpy(packet + PACK_LEN_ICMP_ECHO + PADDING, \
+	ft_memcpy(packet + PACK_LEN_ICMP_ECHO + ICMP_HDR_PADDING, \
 												conf->data_icmp, conf->size);
 	ft_fill_hdr_icmp(packet);
 }

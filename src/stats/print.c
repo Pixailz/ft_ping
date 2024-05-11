@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 02:58:51 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/05 23:52:05 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:09:18 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_pong_stats(unsigned char *pkt, t_icmphdr_echo *icmphdr_echo)
 	if (!conf->flood && !ft_optget("quiet")->is_present)
 		printf(FMT_STATS_PONG, \
 			ft_htons(iphdr->total_len) - (PACK_LEN_IP + \
-				(conf->custom_size * PADDING)), \
+				(conf->custom_size * ICMP_HDR_PADDING)), \
 			ip_str, \
 			ft_htons(icmphdr_echo->sequence), \
 			iphdr->ttl, \

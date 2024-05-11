@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 06:53:08 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/04/01 05:37:58 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:09:05 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_bool	setup_target(t_conf *conf, char *value)
 	if (conf->custom_size)
 		ft_printf(FMT_STATS_PING, value, ip_str, conf->size);
 	else
-		ft_printf(FMT_STATS_PING, value, ip_str, conf->size + PADDING);
+		ft_printf(FMT_STATS_PING, value, ip_str, conf->size + ICMP_HDR_PADDING);
 	if (ft_optget("verbose")->is_present)
 		ft_printf(FMT_STATS_PING_VERBOSE, conf->id_icmp, conf->id_icmp);
 	ft_printf("\n");
