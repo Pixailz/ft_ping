@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/06 23:55:38 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:34:43 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,9 @@
  sprintf()
  */
 
-# include <arpa/inet.h>
-/*
- inet_ntop()
- */
-
 # include <netinet/ip_icmp.h>
 /*
  ICMP_ECHO
- */
-
-# include <netinet/in.h>
-/*
- htons()
  */
 
 # include <sys/time.h>
