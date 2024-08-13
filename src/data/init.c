@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 04:21:19 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/06 22:40:21 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/08/13 22:06:51 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,51 +30,50 @@ t_bin	init_config(void)
 	2. set timeout on recv
 	3. packet include iphdr
  */
-int	ft_create_sock_echo(void)
+int	ft_create_sock_echo(int *sock)
 {
-	int				sock;
-	struct timeval	tv;
-	t_opt			*opt;
+	t_opt	*opt;
+	int		tv;
 
 	if (getuid())
-		return (-1);
-	sock = socket(PF_INET, SOCK_RAW, IPPROTO_ICMP);
-	if (sock == -1)
-		return (-2);
+		return (1);
+	*sock = ft_socket(PF_INET, SOCK_RAW, IPPROTO_ICMP);
+	if (*sock == -1)
+		return (2);
 	opt = ft_optget("linger");
-	tv.tv_usec = 0;
 	if (opt->is_present)
-		tv.tv_sec = ft_atoll(opt->value->value);
+		tv = ft_atoll(opt->value->value);
 	else
-		tv.tv_sec = FT_PING_LINGER;
-	if (setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) == -1)
-		return (-3);
-	if (setsockopt(sock, IPPROTO_IP, IP_HDRINCL, (int [1]){1}, \
-															sizeof(int)) == -1)
-		return (-4);
-	return (sock);
+		tv = FT_PING_LINGER;
+	tv *= A_SEC;
+	if (ft_setsockopt_timeout(*sock, tv))
+		return (3);
+	if (ft_setsockopt_ipheader(*sock))
+		return (4);
+	return (0);
 }
 
 t_bin	init_socket(void)
 {
 	t_conf	*conf;
-	int		socket;
+	int		sock;
+	int		retv;
 
 	conf = get_conf();
-	socket = ft_create_sock_echo();
-	if (socket < 0)
+	retv = ft_create_sock_echo(&sock);
+	if (retv)
 	{
-		if (socket == -1)
+		if (retv == 1)
 			ft_perr("ft_ping: Lacking privilege for icmp packet\n");
-		if (socket == -2)
+		if (retv == 2)
 			ft_perr("get_sock_echo: failed to get raw socket\n");
-		if (socket == -3)
+		if (retv == 3)
 			ft_perr("get_sock_echo: failed to set timeout on recv\n");
-		if (socket == -4)
+		if (retv == 4)
 			ft_perr("get_sock_echo: failed to set IP_HDRINCL\n");
 		return (BIT_01);
 	}
-	conf->socket = socket;
+	conf->socket = sock;
 	return (BIT_00);
 }
 

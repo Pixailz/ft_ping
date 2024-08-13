@@ -2,7 +2,6 @@
 SRC_C := cmd/help.c \
 		 cmd/usage.c \
 		 data/conf.c \
-		 data/exit.c \
 		 data/free.c \
 		 data/init.c \
 		 error.c \

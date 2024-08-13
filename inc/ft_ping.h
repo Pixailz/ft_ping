@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/29 21:14:17 by brda-sil          #+#    #+#             */
-/*   Updated: 2024/05/11 20:34:43 by brda-sil         ###   ########.fr       */
+/*   Updated: 2024/08/13 21:10:10 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,16 +171,13 @@ t_bin		usage(void);
 // data/conf.c
 t_conf		*get_conf(void);
 
-// data/exit.c
-void		setup_exit(void);
-
 // data/free.c
 void		free_conf(void);
 void		free_data(void);
 
 // data/init.c
 t_bin		init_config(void);
-int			ft_create_sock_echo(void);
+int			ft_create_sock_echo(int *sock);
 t_bin		init_socket(void);
 t_bin		init_packet(void);
 t_bin		init_signal(void);
