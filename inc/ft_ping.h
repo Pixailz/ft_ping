@@ -159,104 +159,127 @@ typedef struct s_conf
 /* ##### */
 
 // cmd/help.c
-void		help_header(void);
-void		help_part_1(void);
-void		help_part_2(void);
-void		help_footer(void);
-t_bin		help(void);
+
+void	help_header(void);
+void	help_part_1(void);
+void	help_part_2(void);
+void	help_footer(void);
+t_bin	help(void);
 
 // cmd/usage.c
-t_bin		usage(void);
+
+t_bin	usage(void);
 
 // data/conf.c
-t_conf		*get_conf(void);
+
+t_conf	*get_conf(void);
 
 // data/free.c
-void		free_conf(void);
-void		free_data(void);
+
+void	free_conf(void);
+void	free_data(void);
 
 // data/init.c
-t_bin		init_config(void);
-int			ft_create_sock_echo(int *sock);
-t_bin		init_socket(void);
-t_bin		init_packet(void);
-t_bin		init_signal(void);
+
+t_bin	init_config(void);
+int		ft_create_sock_echo(int *sock);
+t_bin	init_socket(void);
+t_bin	init_packet(void);
+t_bin	init_signal(void);
 
 // error.c
-void		print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn);
-void		print_icmp_timeout(void);
-void		print_icmp_error(unsigned char *pkt);
+
+void	print_icmp_errn(t_uint16 seq, t_uint16 tot_len, t_int32 errn);
+void	print_icmp_timeout(void);
+void	print_icmp_error(unsigned char *pkt);
 
 // interrupt.c
-void		ft_ping_interrupt(int sig);
+
+void	ft_ping_interrupt(int sig);
 
 // main.c
-t_bin		ft_ping(int ac, char **av);
-int			main(int ac, char **av);
+
+t_bin	ft_ping(int ac, char **av);
+int		main(int ac, char **av);
 
 // packet/get_packet_size.c
-t_size		get_packet_size(void);
-t_size		get_icmp_size(void);
+
+t_size	get_packet_size(void);
+t_size	get_icmp_size(void);
 
 // packet/icmp.c
-void		ft_fill_hdr_icmp(t_icmphdr_echo *packet);
-void		ft_hdr_icmp_seq_inc(void);
-void		ft_hdr_icmp_echo_fill(void *packet);
+
+void	ft_fill_hdr_icmp(t_icmphdr_echo *packet);
+void	ft_hdr_icmp_seq_inc(void);
+void	ft_hdr_icmp_echo_fill(void *packet);
 
 // packet/ip.c
-void		ft_hdr_ip_set_dst(t_int4 dst);
-void		ft_hdr_ip_fill(t_iphdr *packet);
+
+void	ft_hdr_ip_set_dst(t_int4 dst);
+void	ft_hdr_ip_fill(t_iphdr *packet);
 
 // packet/print.c
-void		packet_print_icmpdata(void *data);
-void		packet_print(void *pkt);
+
+void	packet_print_icmpdata(void *data);
+void	packet_print(void *pkt);
 
 // parsing/parse.c
-t_bin		parse_opts(int ac, char **av);
+
+t_bin	parse_opts(int ac, char **av);
 
 // parsing/post_parse.c
-t_bool		post_parse_incompatible_opt(void);
-t_bin		post_parse(void);
+
+t_bool	post_parse_incompatible_opt(void);
+t_bin	post_parse(void);
 
 // parsing/post_parse_conf_1.c
-void		post_parse_count(t_conf *conf);
-void		post_parse_timeout(t_conf *conf);
-void		post_parse_linger(t_conf *conf);
-void		post_parse_interval(t_conf *conf);
-void		post_parse_ttl(t_conf *conf);
+
+void	post_parse_count(t_conf *conf);
+void	post_parse_timeout(t_conf *conf);
+void	post_parse_linger(t_conf *conf);
+void	post_parse_interval(t_conf *conf);
+void	post_parse_ttl(t_conf *conf);
 
 // parsing/post_parse_conf_2.c
-void		post_parse_preload(t_conf *conf);
-void		post_parse_tos(t_conf *conf);
+
+void	post_parse_preload(t_conf *conf);
+void	post_parse_tos(t_conf *conf);
 
 // parsing/post_parse_pattern.c
-t_bin		post_parse_pattern_custom(t_conf *conf, char *str);
-void		post_parse_icmp_data_custom(t_conf *conf);
-void		post_parse_icmp_data_random(t_conf *conf);
-int			post_parse_pattern(t_conf *conf);
+
+t_bin	post_parse_pattern_custom(t_conf *conf, char *str);
+void	post_parse_icmp_data_custom(t_conf *conf);
+void	post_parse_icmp_data_random(t_conf *conf);
+int		post_parse_pattern(t_conf *conf);
 
 // process.c
-void		process_args(void);
+
+void	process_args(void);
 
 // recv_pong.c
-void		recv_pong(void);
+
+void	recv_pong(void);
 
 // run.c
-void		ft_ping_run(void);
+
+void	ft_ping_run(void);
 
 // send_ping.c
-t_bool		send_ping(const struct sockaddr *dst);
+
+t_bool	send_ping(const struct sockaddr *dst);
 
 // stats/print.c
-void		print_pong_stats(unsigned char *pkt, t_icmphdr_echo *icmphdr_echo);
-char		*get_color_pkt_loss(int pkt_loss);
-t_ts		rtt_get_standard_deviation(t_stats sts, int pkt_recv, t_ts rtt_avg);
-void		print_rtt(t_stats sts, int pkt_recv);
-void		print_stats(void);
+
+void	print_pong_stats(unsigned char *pkt, t_icmphdr_echo *icmphdr_echo);
+char	*get_color_pkt_loss(int pkt_loss);
+t_ts	rtt_get_standard_deviation(t_stats sts, int pkt_recv, t_ts rtt_avg);
+void	print_rtt(t_stats sts, int pkt_recv);
+void	print_stats(void);
 
 // stats/rtt.c
-t_ts		ft_getnow_ms(void);
-void		update_stats_rtt(t_ts rtt, t_uint16 sequence);
+
+t_ts	ft_getnow_ms(void);
+void	update_stats_rtt(t_ts rtt, t_uint16 sequence);
 
 /* ########################################################################## */
 
